@@ -271,15 +271,18 @@ return {
 		end,
 	},
 	{
-        "jwbaldwin/oscura.nvim",
-        lazy = false,
-        config = function()
-            require("oscura").setup({
-                transparent_background = true,
-            })
-        end
+		"jwbaldwin/oscura.nvim",
+		lazy = false,
+		config = function()
+			require("oscura").setup({
+				transparent_background = true,
+			})
+		end,
 	},
-    {
-        "catppuccin/nvim"
-    }
+	{
+		"catppuccin/nvim",
+	},
+	{
+		"navarasu/onedark.nvim",
+	},
 }
