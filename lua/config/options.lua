@@ -5,3 +5,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 vim.diagnostic.disable()
+vim.wo.number = true
+vim.wo.relativenumber = true
