@@ -5,6 +5,10 @@ return {
 		dashboard = { enabled = true },
 		image = { enabled = true },
 		notifier = { enabled = true },
+		lazygit = { enabled = true },
 		quickfile = { enabled = true },
+	},
+	keys = {
+		{ "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" }
 	}
 }
