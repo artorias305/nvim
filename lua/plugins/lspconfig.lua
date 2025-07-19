@@ -23,9 +23,30 @@ return {
 				},
 			},
 			clangd = {},
-			-- Add other servers here, e.g.:
-			-- pyright = {},
-			-- tsserver = {},
+			ts_ls = {
+				settings = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayFunctionLikeReturnTypeHints = true,
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayFunctionLikeReturnTypeHints = true,
+						},
+					},
+				},
+			},
+			gopls = {
+				settings = {
+					gopls = {
+						analyses = {
+							unsusedparams = true,
+						},
+						staticcheck = true,
+					},
+				},
+			}
 		},
 	},
 	config = function(_, opts)
