@@ -2,7 +2,6 @@ local map = vim.keymap.set
 local builtin = require("telescope.builtin")
 
 map("n", "<leader>t", '', { desc = "Theme" })
-map("n", "<leader>ths", ":Themify<CR>", { desc = "Open themify colorscheme menu" })
 
 map("n", "<leader>f", '', { desc = "Find" })
 map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })

@@ -4,6 +4,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
--- vim.diagnostic.disable()
+
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+vim.opt.hlsearch = true
+vim.opt.mouse = "a"
+
+vim.opt.termguicolors = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
