@@ -23,20 +23,7 @@ return {
 				},
 			},
 			clangd = {},
-			ts_ls = {
-				settings = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayFunctionLikeReturnTypeHints = true,
-					},
-					javascript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayFunctionLikeReturnTypeHints = true,
-						},
-					},
-				},
-			},
+			ts_ls = {},
 			gopls = {
 				settings = {
 					gopls = {

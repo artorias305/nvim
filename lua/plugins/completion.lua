@@ -1,15 +1,15 @@
 return {
-  'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
+	'saghen/blink.cmp',
+	dependencies = { 'rafamadriz/friendly-snippets' },
 
-  version = '1.*',
-  opts = {
-    keymap = { preset = 'default' },
+	version = '1.*',
+	opts = {
+		keymap = { preset = 'default' },
 
-    appearance = {
-      nerd_font_variant = 'mono'
-    },
-    signature = { enabled = true },
-    fuzzy = { implementation = "lua" }
-  },
+		appearance = {
+			nerd_font_variant = 'mono'
+		},
+		signature = { enabled = true },
+		fuzzy = { implementation = "lua" }
+	},
 }
