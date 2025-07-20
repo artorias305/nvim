@@ -25,3 +25,8 @@ map("n", "<leader>d", '', { desc = "Diagnostics" })
 map("n", "<leader>da", vim.diagnostic.setloclist, { desc = "Show all diagnostics in quickfix list" })
 
 map("n", "<leader>e", ':Neotree toggle<CR>', { desc = "Toggle Neotree", silent = true })
+
+map("n", "<C-d>", "<C-d>zz", { desc = "Move down in buffer with cursor centered" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Move down in buffer with cursor centered" })
+
+map("n", "J", "mzJ`z")
