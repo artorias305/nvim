@@ -7,8 +7,10 @@ return {
 		notifier = { enabled = true },
 		lazygit = { enabled = true },
 		quickfile = { enabled = true },
+		terminal = { enabled = true }
 	},
 	keys = {
-		{ "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" }
+		{ "<leader>lg", function() Snacks.lazygit() end,  desc = "Lazygit" },
+		{ "<leader>st", function() Snacks.terminal() end, desc = "Toggle Terminal" }
 	}
 }
