@@ -30,3 +30,5 @@ map("n", "<C-d>", "<C-d>zz", { desc = "Move down in buffer with cursor centered"
 map("n", "<C-u>", "<C-u>zz", { desc = "Move down in buffer with cursor centered" })
 
 map("n", "J", "mzJ`z")
+
+map("n", "<leader>u", ":UndotreeToggle<CR>", { desc = "Toggle Undotree panel", silent = true })
