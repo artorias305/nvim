@@ -24,6 +24,7 @@ return {
 			},
 			clangd = {},
 			ts_ls = {},
+			ols = {},
 			gopls = {
 				settings = {
 					gopls = {
