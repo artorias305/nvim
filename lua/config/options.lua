@@ -14,3 +14,5 @@ vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+vim.opt.termguicolors = true
