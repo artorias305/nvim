@@ -77,5 +77,24 @@ return {
 				transparent = true
 			})
 		end
+	},
+	{
+		"vague2k/vague.nvim",
+		config = function()
+			require("vague").setup({
+				transparent = true
+			})
+			vim.cmd(":hi statusline guibg=NONE")
+		end
+	},
+	{
+		"rose-pine/neovim",
+		config = function()
+			require("rose-pine").setup({
+				styles = {
+					transparency = true
+				}
+			})
+		end
 	}
 }
