@@ -1,5 +1,5 @@
 return {
-	enabled = false,
+	enabled = true,
 	"akinsho/bufferline.nvim",
 	config = function()
 		require("bufferline").setup({
