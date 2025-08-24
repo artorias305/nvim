@@ -40,3 +40,23 @@ map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
 map("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 map("n", "<leader>mp", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format Code" })
 map("v", "<leader>mp", vim.lsp.buf.format, { desc = "Format Visual Selection" })
+
+local function compile_and_run_c()
+	vim.cmd("w")
+	local filename = vim.fn.expand("%")
+	local output = vim.fn.expand("%:r")
+	local compile_cmd = string.format("gcc -g %s -o %s", filename, output)
+	local success, _ = pcall(vim.cmd, "!" .. compile_cmd)
+
+	if not success then
+		vim.notify("Compilation failed.", vim.log.levels.ERROR)
+		return
+	end
+
+	vim.cmd('botright term')
+	vim.cmd("startinsert!")
+	local run_cmd = string.format("./%s", output)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(run_cmd .. '\n', true, false, true), 't', false)
+end
+
+map("n", "<leader>cr", compile_and_run_c, { noremap = true, silent = true })
