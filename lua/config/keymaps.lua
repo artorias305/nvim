@@ -60,3 +60,13 @@ local function compile_and_run_c()
 end
 
 map("n", "<leader>cr", compile_and_run_c, { noremap = true, silent = true })
+
+map("n", "<leader>tp", ":TypstPreview<CR>", { buffer = 0 })
+
+vim.cmd([[
+	setlocal wrapmargin=0
+	setlocal formatoptions+=t
+	setlocal linebreak
+	setlocal spell
+	setlocal wrap
+]])
