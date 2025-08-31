@@ -45,7 +45,8 @@ return {
 		"vague2k/vague.nvim",
 		config = function()
 			require("vague").setup({
-				transparent = true
+				transparent = true,
+				italic = false
 			})
 			vim.cmd(":hi statusline guibg=NONE")
 		end
