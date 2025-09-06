@@ -14,20 +14,8 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		opts = {
-			transparent_background = false
+			transparent_background = true
 		},
-		specs = {
-			{
-				"akinsho/bufferline.nvim",
-				optional = true,
-				opts = function(_, opts)
-					if (vim.g.colors_name or ""):find("catppuccin") then
-						opts.highlights = require("catppuccin.groups.integrations.bufferline")
-						    .get()
-					end
-				end
-			}
-		}
 	},
 	{
 		"blazkowolf/gruber-darker.nvim"
@@ -77,5 +65,11 @@ return {
 	},
 	{
 		"datsfilipe/vesper.nvim"
+	},
+	{
+		"shaunsingh/nord.nvim",
+		config = function()
+			vim.g.nord_disable_background = true
+		end
 	}
 }
