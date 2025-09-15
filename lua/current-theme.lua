@@ -1,1 +1,1 @@
-vim.cmd("colorscheme custom")
+vim.cmd("colorscheme vesper")
