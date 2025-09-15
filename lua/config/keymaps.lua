@@ -70,3 +70,8 @@ vim.cmd([[
 	setlocal spell
 	setlocal wrap
 ]])
+
+map("n", "<leader>tf", function()
+	local current_file = vim.fn.expand('%:p')
+	vim.cmd('!' .. 'typstyle -i ' .. current_file)
+end, { desc = "Format typst file" })
