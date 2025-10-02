@@ -64,7 +64,12 @@ return {
 		end
 	},
 	{
-		"datsfilipe/vesper.nvim"
+		"datsfilipe/vesper.nvim",
+		config = function()
+			require("vesper").setup({
+				transparent = true
+			})
+		end
 	},
 	{
 		"shaunsingh/nord.nvim",

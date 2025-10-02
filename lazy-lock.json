@@ -3,7 +3,6 @@
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "catppuccin": { "branch": "main", "commit": "30fa4d122d9b22ad8b2e0ab1b533c8c26c4dde86" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
-  "floatingtodo.nvim": { "branch": "main", "commit": "b71c3dd66bb16ead20caed223bfe5ebf4724f640" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gruber-darker.nvim": { "branch": "main", "commit": "b22e1bbf06dd604d7d3483823d63103b86ebe942" },
   "hex.nvim": { "branch": "master", "commit": "b46e63356a69e8d6f046c38a9708d55d17f15038" },
