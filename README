@@ -1,3 +1,0 @@
-# Usage
-=======
-For supporting a new language just install the LSP through `:Mason` and the parser with `:TSInstall <language>` you will get autocomplete and the rest taken care of automatically.
