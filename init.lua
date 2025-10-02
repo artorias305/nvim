@@ -20,6 +20,7 @@ vim.pack.add({
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
+	{ src = "https://github.com/windwp/nvim-autopairs" }
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -36,6 +37,7 @@ vim.cmd("set completeopt+=noselect")
 
 require "mini.pick".setup()
 require "oil".setup()
+require "nvim-autopairs".setup()
 
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
