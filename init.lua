@@ -39,6 +39,7 @@ require "mini.pick".setup()
 require "oil".setup()
 require "nvim-autopairs".setup()
 
+vim.keymap.set('n', '<leader>g', ':Pick grep_live<CR>')
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
@@ -48,7 +49,12 @@ vim.lsp.enable(
 		"lua_ls",
 		"clangd",
 		"tinymist",
-		"css-lsp",
+		"cssls",
+		"html",
+		"ts_ls",
+		"tailwindcss",
+		"jsonls",
+		"eslint",
 		"rust_analyzer"
 	}
 )
