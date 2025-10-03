@@ -2,7 +2,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
-vim.opt.tabstop = 4
+vim.opt.tabstop = 8
 vim.opt.swapfile = false
 vim.g.mapleader = " "
 vim.opt.winborder = "rounded"
@@ -67,3 +67,6 @@ vim.cmd(":hi statusline guibg=NONE")
 vim.keymap.set({'x', 'n'}, '<C-s>', [[<esc>:'<,'>s/\V/]])
 
 vim.keymap.set('n', '<C-c>', ':noh<CR>')
+
+vim.keymap.set('n', '<leader>v', ':edit ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>z', ':edit ~/.zshrc')
