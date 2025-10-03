@@ -63,3 +63,7 @@ vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
+
+vim.keymap.set({'x', 'n'}, '<C-s>', [[<esc>:'<,'>s/\V/]])
+
+vim.keymap.set('n', '<C-c>', ':noh<CR>')
