@@ -16,11 +16,13 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
+	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
-	{ src = "https://github.com/windwp/nvim-autopairs" }
+	{ src = "https://github.com/windwp/nvim-autopairs" },
+	{ src = "https://github.com/lervag/vimtex" }
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -55,7 +57,8 @@ vim.lsp.enable(
 		"tailwindcss",
 		"jsonls",
 		"eslint",
-		"rust_analyzer"
+		"rust_analyzer",
+		"texlab"
 	}
 )
 
@@ -64,9 +67,24 @@ vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
 
-vim.keymap.set({'x', 'n'}, '<C-s>', [[<esc>:'<,'>s/\V/]])
+vim.keymap.set({ 'x', 'n' }, '<C-s>', [[<esc>:'<,'>s/\V/]])
 
 vim.keymap.set('n', '<C-c>', ':noh<CR>')
 
 vim.keymap.set('n', '<leader>v', ':edit ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>z', ':edit ~/.zshrc')
+
+vim.api.nvim_create_user_command(
+	'Typstfmt',
+	function()
+		local file = vim.fn.expand('%:p')
+		vim.cmd('!typstyle -i ' .. vim.fn.shellescape(file))
+	end,
+	{}
+)
+
+vim.g.vimtex_view_method = "sioyek"
+vim.g.vimtex_compiler_latexmk = {
+	aux_dir = "/Users/kiq/.texfiles",
+	out_dir = "/Users/kiq/.texfiles"
+}
