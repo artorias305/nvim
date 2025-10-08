@@ -88,3 +88,6 @@ vim.g.vimtex_compiler_latexmk = {
 	aux_dir = "/Users/kiq/.texfiles",
 	out_dir = "/Users/kiq/.texfiles"
 }
+
+vim.keymap.set('n', '<leader>tf', ':Typstfmt<CR>')
+vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>")
