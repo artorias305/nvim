@@ -72,7 +72,7 @@ vim.keymap.set({ 'x', 'n' }, '<C-s>', [[<esc>:'<,'>s/\V/]])
 vim.keymap.set('n', '<C-c>', ':noh<CR>')
 
 vim.keymap.set('n', '<leader>v', ':edit ~/.config/nvim/init.lua<CR>')
-vim.keymap.set('n', '<leader>z', ':edit ~/.zshrc')
+vim.keymap.set('n', '<leader>z', ':edit ~/.zshrc<CR>')
 
 vim.api.nvim_create_user_command(
 	'Typstfmt',
@@ -91,3 +91,4 @@ vim.g.vimtex_compiler_latexmk = {
 
 vim.keymap.set('n', '<leader>tf', ':Typstfmt<CR>')
 vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>")
+vim.keymap.set('n', '<C-.>', function() vim.cmd('!open .') end)
