@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <source-file.c|.cpp|.cc>"
+    exit 1
+fi
+
+SRC="$1"
+EXT="${SRC##*.}"
+BIN="./temp_exec_$$"
+
+case "$EXT" in
+    c)
+        COMPILER="gcc"
+        ;;
+    cpp|cc)
+        COMPILER="g++"
+        ;;
+    *)
+        echo "Unsupported file type: .$EXT"
+        exit 2
+        ;;
+esac
+
+$COMPILER "$SRC" -o "$BIN"
+if [ $? -ne 0 ]; then
+    echo "Compilation failed."
+    exit 3
+fi
+
+"$BIN"
+
+rm -f "$BIN"
+
