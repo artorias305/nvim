@@ -92,8 +92,3 @@ vim.g.vimtex_compiler_latexmk = {
 vim.keymap.set('n', '<leader>tf', ':Typstfmt<CR>')
 vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>")
 vim.keymap.set('n', '<C-.>', function() vim.cmd('!open .') end)
-
-vim.keymap.set("n", "<leader>cr", function() 
-	local file = vim.fn.expand('%:p')
-	vim.cmd("!~/.config/nvim/scripts/cr " .. file)
-end)
