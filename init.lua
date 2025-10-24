@@ -16,10 +16,13 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
+	{ src = "https://github.com/datsfilipe/vesper.nvim" },
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/lervag/vimtex" }
@@ -59,6 +62,7 @@ vim.lsp.enable(
 		"jsonls",
 		"eslint",
 		"rust_analyzer",
+		"pyright",
 		"texlab"
 	}
 )
@@ -93,3 +97,8 @@ vim.g.vimtex_compiler_latexmk = {
 vim.keymap.set('n', '<leader>tf', ':Typstfmt<CR>')
 vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>")
 vim.keymap.set('n', '<C-.>', function() vim.cmd('!open .') end)
+
+vim.keymap.set("n", "<leader>sh", ":split<CR>")
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
+
+vim.keymap.set("n", "<leader>tt", ":Telescope colorscheme<CR>")
