@@ -19,6 +19,7 @@ vim.pack.add({
 	{ src = "https://github.com/datsfilipe/vesper.nvim" },
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -119,3 +120,12 @@ vim.keymap.set("n", "<leader>sh", ":split<CR>")
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
 
 vim.keymap.set("n", "<leader>tt", ":Telescope colorscheme<CR>")
+
+require("oil").setup({
+	columns = {
+		"icon",
+		-- "permissions",
+		"size",
+		"mtime"
+	}
+})
