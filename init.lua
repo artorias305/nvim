@@ -18,14 +18,27 @@ vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = "https://github.com/datsfilipe/vesper.nvim" },
 	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
+	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
-	{ src = "https://github.com/lervag/vimtex" }
+	{ src = "https://github.com/lervag/vimtex" },
+	{ src = "https://github.com/raddari/last-color.nvim" }
+})
+
+require('nvim-ts-autotag').setup({
+  opts = {
+    -- Defaults
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = false -- Auto close on trailing </
+  },
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -63,14 +76,18 @@ vim.lsp.enable(
 		"eslint",
 		"rust_analyzer",
 		"pyright",
-		"texlab"
+		"texlab",
+		"jdtls"
 	}
 )
 
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
-vim.cmd("colorscheme vague")
-vim.cmd(":hi statusline guibg=NONE")
+local theme = require("last-color").recall() or 'default'
+vim.cmd.colorscheme(theme)
+if (theme == "vague") then
+	vim.cmd(":hi statusline guibg=NONE")
+end
 
 vim.keymap.set({ 'x', 'n' }, '<C-s>', [[<esc>:'<,'>s/\V/]])
 
