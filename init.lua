@@ -21,6 +21,7 @@ vim.pack.add({
 	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
@@ -34,12 +35,12 @@ vim.pack.add({
 })
 
 require('nvim-ts-autotag').setup({
-  opts = {
-    -- Defaults
-    enable_close = true, -- Auto close tags
-    enable_rename = true, -- Auto rename pairs of tags
-    enable_close_on_slash = false -- Auto close on trailing </
-  },
+	opts = {
+		-- Defaults
+		enable_close = true, -- Auto close tags
+		enable_rename = true, -- Auto rename pairs of tags
+		enable_close_on_slash = false -- Auto close on trailing </
+	},
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -129,3 +130,9 @@ require("oil").setup({
 		"mtime"
 	}
 })
+
+require("lualine").setup {
+	options = {
+		theme = 'solarized-osaka'
+	}
+}
