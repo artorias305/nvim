@@ -31,7 +31,8 @@ vim.pack.add({
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/lervag/vimtex" },
-	{ src = "https://github.com/raddari/last-color.nvim" }
+	{ src = "https://github.com/raddari/last-color.nvim" },
+	{ src = "https://github.com/sbdchd/neoformat" }
 })
 
 require('nvim-ts-autotag').setup({
@@ -84,6 +85,7 @@ vim.lsp.enable(
 )
 
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>jf", ":Neoformat<CR>")
 
 local theme = require("last-color").recall() or 'default'
 vim.cmd.colorscheme(theme)
