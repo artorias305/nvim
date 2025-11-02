@@ -32,7 +32,8 @@ vim.pack.add({
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/lervag/vimtex" },
 	{ src = "https://github.com/raddari/last-color.nvim" },
-	{ src = "https://github.com/sbdchd/neoformat" }
+	{ src = "https://github.com/catppuccin/nvim" },
+	{ src = "https://github.com/folke/tokyonight.nvim" }
 })
 
 require('nvim-ts-autotag').setup({
@@ -133,8 +134,8 @@ require("oil").setup({
 	}
 })
 
-require("lualine").setup {
+require("lualine").setup({
 	options = {
-		theme = 'solarized-osaka'
+		theme = 'auto'
 	}
-}
+})
