@@ -6,6 +6,7 @@ vim.opt.tabstop = 8
 vim.opt.swapfile = false
 vim.g.mapleader = " "
 vim.opt.winborder = "rounded"
+vim.opt.guicursor = ""
 
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
@@ -87,7 +88,7 @@ vim.lsp.enable(
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>jf", ":Neoformat<CR>")
 
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("gruber-darker")
 if (theme == "vague") then
 	vim.cmd(":hi statusline guibg=NONE")
 end
