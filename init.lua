@@ -6,6 +6,7 @@ vim.opt.tabstop = 8
 vim.opt.swapfile = false
 vim.g.mapleader = " "
 vim.opt.winborder = "rounded"
+vim.opt.guicursor = ""
 
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
@@ -16,11 +17,10 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
-	{ src = "https://github.com/datsfilipe/vesper.nvim" },
-	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/blazkowolf/gruber-darker.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -30,10 +30,13 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
-	{ src = "https://github.com/lervag/vimtex" },
 	{ src = "https://github.com/catppuccin/nvim" },
-	{ src = "https://github.com/folke/tokyonight.nvim" }
+	{ src = "https://github.com/folke/tokyonight.nvim" },
+	{ src = "https://github.com/folke/which-key.nvim" },
+	{ src = "https://github.com/RaafatTurki/hex.nvim" }
 })
+
+require('hex').setup()
 
 require('nvim-ts-autotag').setup({
 	opts = {
@@ -87,7 +90,7 @@ vim.lsp.enable(
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>jf", ":Neoformat<CR>")
 
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("gruber-darker")
 if (theme == "vague") then
 	vim.cmd(":hi statusline guibg=NONE")
 end
