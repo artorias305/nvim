@@ -9,7 +9,7 @@ vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 
 -- Define LSP servers to enable
-local servers = {"clangd", "lua_ls", "tinymist", "rust_analyzer", "pyright", "gopls"}
+local servers = { "clangd", "lua_ls", "tinymist", "pyright", "gopls" }
 
 -- Plugins setup
 vim.pack.add({
@@ -18,7 +18,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	-- { src = "https://github.com/saghen/blink.cmp", version = 'v1.8.0' },
-	{ src = "https://github.com/akinsho/toggleterm.nvim" }
+	{ src = "https://github.com/akinsho/toggleterm.nvim" },
+	{ src = "https://github.com/mrcjkb/rustaceanvim" }
 })
 
 require("toggleterm").setup({
