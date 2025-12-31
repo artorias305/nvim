@@ -17,10 +17,13 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	-- { src = "https://github.com/saghen/blink.cmp", version = 'v1.8.0' },
+	{ src = "https://github.com/saghen/blink.cmp", version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
-	{ src = "https://github.com/mrcjkb/rustaceanvim" }
+	{ src = "https://github.com/mrcjkb/rustaceanvim" },
+	{ src = "https://github.com/folke/trouble.nvim",            cmd = "Trouble" }
 })
+
+require("trouble").setup()
 
 require("toggleterm").setup({
 	open_mapping = [[<c-\>]],
@@ -38,7 +41,7 @@ require("oil").setup({
 })
 
 require("mini.pick").setup()
-require("mini.completion").setup()
+-- require("mini.completion").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 
@@ -75,9 +78,9 @@ for _, server in ipairs(servers) do
 end
 
 -- NOTE: Testing mini completion
--- require("blink.cmp").setup({
--- 	fuzzy = { implementation = "prefer_rust" }
--- })
+require("blink.cmp").setup({
+	fuzzy = { implementation = "prefer_rust" }
+})
 
 vim.cmd.colorscheme("tokyonight-night")
 
@@ -90,3 +93,8 @@ vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>g", ":Pick grep_live<CR>")
 vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
+
+vim.keymap.set("n", "<leader>q", ":Trouble diagnostics toggle<CR>")
+
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
+vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+d<CR>')
