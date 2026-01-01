@@ -20,6 +20,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp",       version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim",     cmd = "Trouble" }
 })
 
@@ -41,6 +42,16 @@ require("oil").setup({
 	view_options = {
 		show_hidden = true
 	}
+})
+
+require("gitsigns").setup({
+	signs = {
+		add = { text = '+' },
+		change = { text = '~' },
+		delete = { text = '_' },
+		topdelete = { text = '‾' },
+		changedelete = { text = '~' },
+	},
 })
 
 require("mini.pick").setup()
