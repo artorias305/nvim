@@ -17,10 +17,10 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp", version = 'v1.8.0' },
+	{ src = "https://github.com/saghen/blink.cmp",       version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
-	{ src = "https://github.com/folke/trouble.nvim",            cmd = "Trouble" }
+	{ src = "https://github.com/folke/trouble.nvim",     cmd = "Trouble" }
 })
 
 require("trouble").setup()
@@ -47,6 +47,7 @@ require("mini.pick").setup()
 -- require("mini.completion").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
+require("mini.statusline").setup()
 
 -- Functions
 local function pack_clean()
