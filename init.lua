@@ -8,9 +8,6 @@ vim.o.tabstop = 8
 vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 
--- Define LSP servers to enable
-local servers = { "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer" }
-
 -- Plugins setup
 vim.pack.add({
 	{ src = "https://github.com/folke/tokyonight.nvim" },
@@ -22,6 +19,9 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim",     cmd = "Trouble" }
 })
+
+-- Enable LSP Servers
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer" })
 
 require("trouble").setup()
 
@@ -53,8 +53,11 @@ require("gitsigns").setup({
 	},
 })
 
+require("blink.cmp").setup({
+	fuzzy = { implementation = "prefer_rust" }
+})
+
 require("mini.pick").setup()
--- require("mini.completion").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.statusline").setup()
@@ -85,17 +88,7 @@ local function pack_clean()
 	end
 end
 
-
--- LSP & Autocomplete
-for _, server in ipairs(servers) do
-	vim.lsp.enable(server)
-end
-
--- NOTE: Testing mini completion
-require("blink.cmp").setup({
-	fuzzy = { implementation = "prefer_rust" }
-})
-
+-- Color scheme
 vim.cmd.colorscheme("tokyonight-night")
 
 -- Keymaps
