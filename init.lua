@@ -14,10 +14,11 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp",              version = 'v1.8.0' },
+	{ src = "https://github.com/saghen/blink.cmp",            version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-	{ src = "https://github.com/folke/trouble.nvim",            cmd = "Trouble" },
+	{ src = "https://github.com/folke/trouble.nvim",          cmd = "Trouble" },
+	{ src = "https://github.com/chomosuke/typst-preview.nvim" }
 })
 
 -- Enable LSP Servers
@@ -104,3 +105,5 @@ vim.keymap.set("n", "<leader>q", ":Trouble diagnostics toggle<CR>")
 
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
 vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+d<CR>')
+
+vim.keymap.set("n", "<leader>tp", ":TypstPreview")
