@@ -14,14 +14,15 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp",       version = 'v1.8.0' },
+	{ src = "https://github.com/saghen/blink.cmp",              version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-	{ src = "https://github.com/folke/trouble.nvim",     cmd = "Trouble" }
+	{ src = "https://github.com/folke/trouble.nvim",            cmd = "Trouble" },
+	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 })
 
 -- Enable LSP Servers
-vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer" })
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls" })
 
 require("trouble").setup()
 
@@ -36,7 +37,6 @@ require("toggleterm").setup({
 require("oil").setup({
 	columns = {
 		"permissions",
-		"icon"
 	},
 	view_options = {
 		show_hidden = true
@@ -89,7 +89,7 @@ local function pack_clean()
 end
 
 -- Color scheme
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("tokyonight-moon")
 
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
