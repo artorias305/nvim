@@ -18,7 +18,6 @@ vim.pack.add({
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim",            cmd = "Trouble" },
-	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 })
 
 -- Enable LSP Servers
