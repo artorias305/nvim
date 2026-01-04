@@ -18,11 +18,18 @@ vim.pack.add({
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim",          cmd = "Trouble" },
-	{ src = "https://github.com/chomosuke/typst-preview.nvim" }
+	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
+	{ src = "https://github.com/folke/lazydev.nvim" }
 })
 
 -- Enable LSP Servers
-vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls" })
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls", "bash-language-server" })
+
+require("lazydev").setup({
+	library = {
+		{ path = "${3rd}/luv/library", words = { "vim%.uv" } }
+	}
+})
 
 require("trouble").setup()
 
@@ -54,7 +61,17 @@ require("gitsigns").setup({
 })
 
 require("blink.cmp").setup({
-	fuzzy = { implementation = "prefer_rust" }
+	fuzzy = { implementation = "prefer_rust" },
+	sources = {
+		default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+		providers = {
+			lazydev = {
+				name = "LazyDev",
+				module = "lazydev.integrations.blink",
+				score_offset = 100
+			}
+		}
+	}
 })
 
 require("mini.pick").setup()
@@ -107,3 +124,5 @@ vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
 vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+d<CR>')
 
 vim.keymap.set("n", "<leader>tp", ":TypstPreview")
+
+vim.keymap.set("n", "<C-c>", ":noh<CR>")
