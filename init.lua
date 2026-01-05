@@ -15,12 +15,14 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp",            version = 'v1.8.0' },
+	{ src = "https://github.com/saghen/blink.cmp",             version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-	{ src = "https://github.com/folke/trouble.nvim",          cmd = "Trouble" },
+	{ src = "https://github.com/folke/trouble.nvim",           cmd = "Trouble" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
-	{ src = "https://github.com/vague2k/vague.nvim" }
+	{ src = "https://github.com/vague2k/vague.nvim" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" }
 })
 
 -- Enable LSP Servers
@@ -101,10 +103,13 @@ vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>pc", pack_clean)
 vim.keymap.set("n", "<leader>e", ":Oil<CR>")
 
-vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
-vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>g", ":Pick grep_live<CR>")
-vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
+local builtin = require("telescope.builtin")
+
+vim.keymap.set("n", "<leader>f", builtin.find_files)
+vim.keymap.set("n", "<leader>h", builtin.help_tags)
+vim.keymap.set("n", "<leader>g", builtin.live_grep)
+vim.keymap.set("n", "<leader>b", builtin.buffers)
+vim.keymap.set("n", "<leader>c", builtin.git_commits)
 
 vim.keymap.set("n", "<leader>q", ":Trouble diagnostics toggle<CR>")
 
@@ -114,3 +119,7 @@ vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+d<CR>')
 vim.keymap.set("n", "<leader>tp", ":TypstPreview")
 
 vim.keymap.set("n", "<C-c>", ":noh<CR>")
+
+vim.keymap.set("n", "gr", builtin.lsp_references)
+
+vim.keymap.set("n", "<leader>v", ":e ~/.config/nvim/init.lua<CR>")
