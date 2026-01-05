@@ -7,6 +7,7 @@ vim.o.wrap = false
 vim.o.tabstop = 8
 vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
+vim.o.guicursor = ""
 
 -- Plugins setup
 vim.pack.add({
@@ -19,17 +20,11 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim",          cmd = "Trouble" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
-	{ src = "https://github.com/folke/lazydev.nvim" }
+	{ src = "https://github.com/vague2k/vague.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls", "bash-language-server" })
-
-require("lazydev").setup({
-	library = {
-		{ path = "${3rd}/luv/library", words = { "vim%.uv" } }
-	}
-})
 
 require("trouble").setup()
 
@@ -62,22 +57,11 @@ require("gitsigns").setup({
 
 require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust" },
-	sources = {
-		default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-		providers = {
-			lazydev = {
-				name = "LazyDev",
-				module = "lazydev.integrations.blink",
-				score_offset = 100
-			}
-		}
-	}
 })
 
 require("mini.pick").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.statusline").setup()
 
 -- Functions
 local function pack_clean()
@@ -106,7 +90,11 @@ local function pack_clean()
 end
 
 -- Color scheme
-vim.cmd.colorscheme("tokyonight-moon")
+local theme = "vague"
+vim.cmd.colorscheme(theme)
+if theme == "vague" then
+	vim.cmd(":hi statusline guibg=NONE")
+end
 
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
