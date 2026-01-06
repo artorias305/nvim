@@ -8,6 +8,7 @@ vim.o.tabstop = 8
 vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 vim.o.guicursor = ""
+vim.o.termguicolors = true
 
 -- Plugins setup
 vim.pack.add({
