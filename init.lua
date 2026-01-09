@@ -7,7 +7,6 @@ vim.o.wrap = false
 vim.o.tabstop = 8
 vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
-vim.o.guicursor = ""
 vim.o.termguicolors = true
 
 -- Plugins setup
@@ -21,13 +20,12 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/folke/trouble.nvim",           cmd = "Trouble" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
-	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" }
 })
 
 -- Enable LSP Servers
-vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls", "bash-language-server" })
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls", "bash-language-server" })
 
 require("trouble").setup()
 
@@ -62,7 +60,6 @@ require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust" },
 })
 
-require("mini.pick").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 
@@ -93,7 +90,7 @@ local function pack_clean()
 end
 
 -- Color scheme
-local theme = "vague"
+local theme = "tokyonight-night"
 vim.cmd.colorscheme(theme)
 if theme == "vague" then
 	vim.cmd(":hi statusline guibg=NONE")
@@ -117,10 +114,13 @@ vim.keymap.set("n", "<leader>q", ":Trouble diagnostics toggle<CR>")
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
 vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+d<CR>')
 
-vim.keymap.set("n", "<leader>tp", ":TypstPreview")
+vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>")
 
 vim.keymap.set("n", "<C-c>", ":noh<CR>")
 
 vim.keymap.set("n", "gr", builtin.lsp_references)
 
 vim.keymap.set("n", "<leader>v", ":e ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<leader>z", ":e ~/.zshrc<CR>")
+
+vim.keymap.set("n", "<leader>m", builtin.man_pages)
