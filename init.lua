@@ -22,11 +22,21 @@ vim.pack.add({
 	{ src = "https://github.com/folke/trouble.nvim",           cmd = "Trouble" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
-	{ src = "https://github.com/nvim-telescope/telescope.nvim" }
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls", "bash-language-server" })
+
+require("lualine").setup({
+	options = {
+		icons_enabled = true,
+		theme = 'auto',
+		component_separators = '|',
+		section_separators = { left = '', right = '' },
+	}
+})
 
 require("trouble").setup()
 
