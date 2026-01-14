@@ -16,27 +16,35 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp",             version = 'v1.8.0' },
+	{ src = "https://github.com/saghen/blink.cmp",               version = 'v1.8.0' },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-	{ src = "https://github.com/folke/trouble.nvim",           cmd = "Trouble" },
+	{ src = "https://github.com/folke/trouble.nvim",             cmd = "Trouble" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
-	{ src = "https://github.com/nvim-lualine/lualine.nvim" }
+	{ src = "https://github.com/nexxeln/vesper.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" }
 })
 
 -- Enable LSP Servers
-vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls", "bash-language-server" })
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
+	"bash-language-server" })
 
-require("lualine").setup({
-	options = {
-		icons_enabled = true,
-		theme = 'auto',
-		component_separators = '|',
-		section_separators = { left = '', right = '' },
-	}
-})
+require("nvim-treesitter").setup({})
+
+local langs = {
+	"bash", "c", "diff", "html", "css", "javascript", "typescript", "tsx", "json", "lua", "luadoc", "markdown",
+	"markdown_inline", "python", "query", "regex", "vim", "vimdoc", "yaml", "toml", "rust", "go"
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
+
+require("nvim-treesitter").install(langs)
 
 require("trouble").setup()
 
@@ -73,6 +81,7 @@ require("blink.cmp").setup({
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
+require("mini.statusline").setup()
 
 -- Functions
 local function pack_clean()
@@ -100,8 +109,15 @@ local function pack_clean()
 	end
 end
 
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
+})
+
 -- Color scheme
-local theme = "tokyonight-night"
+local theme = "vesper"
 vim.cmd.colorscheme(theme)
 if theme == "vague" then
 	vim.cmd(":hi statusline guibg=NONE")
