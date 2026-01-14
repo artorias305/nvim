@@ -24,12 +24,31 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nexxeln/vesper.nvim" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" }
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/stevearc/conform.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
 	"bash-language-server" })
+
+require("conform").setup({
+	formatters_by_ft = {
+		javascript = { "prettierd", "prettier" },
+		typescript = { "prettierd", "prettier" },
+		tsx = { "prettierd", "prettier" },
+		css = { "prettierd", "prettier" },
+		html = { "prettierd", "prettier" },
+		json = { "prettierd", "prettier" },
+		c = { "clang-format" },
+		cpp = { "clang-format" },
+		rust = { "rustfmt" }
+	},
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_format = "fallback"
+	}
+})
 
 require("nvim-treesitter").setup({})
 
@@ -39,10 +58,10 @@ local langs = {
 }
 
 vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          pcall(vim.treesitter.start)
-        end,
-      })
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
+})
 
 require("nvim-treesitter").install(langs)
 
