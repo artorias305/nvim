@@ -25,12 +25,16 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nexxeln/vesper.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/stevearc/conform.nvim" }
+	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/folke/flash.nvim" },
+	{ src = "https://github.com/kdheepak/lazygit.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
 	"bash-language-server" })
+
+require("flash").setup({})
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -42,7 +46,8 @@ require("conform").setup({
 		json = { "prettierd", "prettier" },
 		c = { "clang-format" },
 		cpp = { "clang-format" },
-		rust = { "rustfmt" }
+		rust = { "rustfmt" },
+		go = { "gofmt" }
 	},
 	format_on_save = {
 		timeout_ms = 500,
@@ -101,6 +106,7 @@ require("blink.cmp").setup({
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.statusline").setup()
+require("mini.align").setup()
 
 -- Functions
 local function pack_clean()
@@ -170,3 +176,7 @@ vim.keymap.set("n", "<leader>v", ":e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<leader>z", ":e ~/.zshrc<CR>")
 
 vim.keymap.set("n", "<leader>m", builtin.man_pages)
+
+vim.keymap.set("n", "<leader>t", builtin.colorscheme)
+
+vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>")
