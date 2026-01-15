@@ -32,7 +32,7 @@ vim.pack.add({
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server" })
+	"bash-language-server", "cssls" })
 
 require("flash").setup({})
 
