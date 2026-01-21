@@ -23,18 +23,14 @@ vim.pack.add({
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
-	{ src = "https://github.com/nexxeln/vesper.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/folke/flash.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
 	"bash-language-server", "cssls", "html", "jdtls" })
-
-require("flash").setup({})
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -142,11 +138,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Color scheme
-local theme = "vesper"
+local theme = "tokyonight-night"
 vim.cmd.colorscheme(theme)
-if theme == "vague" then
-	vim.cmd(":hi statusline guibg=NONE")
-end
 
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
