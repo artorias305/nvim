@@ -5,6 +5,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.tabstop = 8
+vim.o.shiftwidth = 8
 vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 vim.o.termguicolors = true
@@ -25,7 +26,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/kdheepak/lazygit.nvim" }
+	{ src = "https://github.com/kdheepak/lazygit.nvim" },
+	{ src = "https://github.com/MunifTanjim/nui.nvim" },
+	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" }
 })
 
 -- Enable LSP Servers
@@ -40,8 +43,8 @@ require("conform").setup({
 		css = { "prettierd", "prettier" },
 		html = { "prettierd", "prettier" },
 		json = { "prettierd", "prettier" },
-		c = { "clang-format" },
-		cpp = { "clang-format" },
+		-- c = { "clang-format" },
+		-- cpp = { "clang-format" },
 		rust = { "rustfmt" },
 		go = { "gofmt" }
 	},
@@ -79,6 +82,7 @@ require("toggleterm").setup({
 require("oil").setup({
 	columns = {
 		"permissions",
+		"icon"
 	},
 	view_options = {
 		show_hidden = true
@@ -103,6 +107,7 @@ require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.statusline").setup()
 require("mini.align").setup()
+require("mini.icons").setup()
 
 -- Functions
 local function pack_clean()
@@ -141,6 +146,22 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local theme = "tokyonight-night"
 vim.cmd.colorscheme(theme)
 
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "none" })
+vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>pc", pack_clean)
@@ -173,3 +194,5 @@ vim.keymap.set("n", "<leader>m", builtin.man_pages)
 vim.keymap.set("n", "<leader>t", builtin.colorscheme)
 
 vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>")
+
+vim.keymap.set("n", "<C-e>", ":Neotree toggle<CR>")
