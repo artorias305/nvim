@@ -28,12 +28,13 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
-	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" }
+	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
+	{ src = "https://github.com/dgox16/oldworld.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server", "cssls", "html", "jdtls" })
+	"bash-language-server", "cssls", "html", "jdtls", "ruby_lsp" })
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -143,24 +144,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Color scheme
-local theme = "tokyonight-night"
+local theme = "oldworld"
 vim.cmd.colorscheme(theme)
-
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
-vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
-vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "none" })
-vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
 
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
