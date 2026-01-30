@@ -44,8 +44,8 @@ require("conform").setup({
 		css = { "prettierd", "prettier" },
 		html = { "prettierd", "prettier" },
 		json = { "prettierd", "prettier" },
-		-- c = { "clang-format" },
-		-- cpp = { "clang-format" },
+		c = { "clang-format" },
+		cpp = { "clang-format" },
 		rust = { "rustfmt" },
 		go = { "gofmt" }
 	},
@@ -59,7 +59,7 @@ require("nvim-treesitter").setup({})
 
 local langs = {
 	"bash", "c", "diff", "html", "css", "javascript", "typescript", "tsx", "json", "lua", "luadoc", "markdown",
-	"markdown_inline", "python", "query", "regex", "vim", "vimdoc", "yaml", "toml", "rust", "go"
+	"markdown_inline", "python", "query", "regex", "vim", "vimdoc", "yaml", "toml", "rust", "go", "typst", "cpp"
 }
 
 vim.api.nvim_create_autocmd("FileType", {
