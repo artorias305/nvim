@@ -29,12 +29,13 @@ vim.pack.add({
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
-	{ src = "https://github.com/dgox16/oldworld.nvim" }
+	{ src = "https://github.com/dgox16/oldworld.nvim" },
+	{ src = "https://github.com/nexxeln/vesper.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server", "cssls", "html", "jdtls" })
+	"bash-language-server", "cssls", "html", "jdtls", "nixd" })
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -145,7 +146,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Color scheme
-local theme = "oldworld"
+local theme = "vesper"
 vim.cmd.colorscheme(theme)
 
 -- Keymaps
