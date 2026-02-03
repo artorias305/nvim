@@ -33,8 +33,8 @@ vim.pack.add({
 })
 
 -- Enable LSP Servers
-vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server", "cssls", "html", "jdtls", "ruby_lsp" })
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls",
+	"bash-language-server", "cssls", "html", "jdtls" })
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -47,7 +47,8 @@ require("conform").setup({
 		c = { "clang-format" },
 		cpp = { "clang-format" },
 		rust = { "rustfmt" },
-		go = { "gofmt" }
+		go = { "gofmt" },
+		python = { "ruff_fix", "ruff_format", "ruff_organize_imports" }
 	},
 	format_on_save = {
 		timeout_ms = 500,
