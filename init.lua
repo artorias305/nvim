@@ -34,7 +34,7 @@ vim.pack.add({
 })
 
 -- Enable LSP Servers
-vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "pyright", "gopls", "rust_analyzer", "ts_ls",
+vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
 	"bash-language-server", "cssls", "html", "jdtls", "nixd" })
 
 require("conform").setup({
@@ -183,3 +183,6 @@ vim.keymap.set("n", "<leader>t", builtin.colorscheme)
 vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>")
 
 vim.keymap.set("n", "<C-e>", ":Neotree toggle<CR>")
+
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
+vim.keymap.set("n", "<leader>sh", ":split<CR>")
