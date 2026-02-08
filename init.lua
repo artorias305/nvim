@@ -206,8 +206,6 @@ vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>")
 
 vim.keymap.set("n", "<C-c>", ":noh<CR>")
 
-vim.keymap.set("n", "gr", builtin.lsp_references)
-
 vim.keymap.set("n", "<leader>v", ":e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<leader>z", ":e ~/.zshrc<CR>")
 
@@ -221,3 +219,12 @@ vim.keymap.set("n", "<C-e>", ":Neotree toggle<CR>")
 
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
 vim.keymap.set("n", "<leader>sh", ":split<CR>")
+
+-- lsp keymaps
+vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
+vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
+vim.keymap.set("n", "gI", require("telescope.builtin").lsp_implementations)
+vim.keymap.set("n", "gy", require("telescope.builtin").lsp_type_definitions)
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
