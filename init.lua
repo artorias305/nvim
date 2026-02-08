@@ -35,7 +35,7 @@ vim.pack.add({
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server", "cssls", "html", "jdtls", "nixd" })
+	"bash-language-server", "cssls", "html", "jdtls", "ols" })
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -83,9 +83,8 @@ require("toggleterm").setup({
 })
 
 require("oil").setup({
+	default_file_explorer = true,
 	columns = {
-		"permissions",
-		"icon"
 	},
 	view_options = {
 		show_hidden = true
@@ -103,14 +102,50 @@ require("gitsigns").setup({
 })
 
 require("blink.cmp").setup({
+	keymap = {
+		preset = "none",
+		["<C-e>"] = { "hide" },
+	},
+	appearance = { nerd_font_variant = "mono" },
+	completion = {
+		menu = {
+			draw = {
+				columns = { { "label", "label_description", gap = 1 } }
+			}
+		}
+	},
+	signature = { enabled = true },
 	fuzzy = { implementation = "prefer_rust" },
 })
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.statusline").setup()
+local statusline = require("mini.statusline")
+statusline.setup({
+	use_icons = false,
+	content = {
+		active = function()
+			local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+			local git = statusline.section_git({ trunc_width = 40 })
+			local filename = statusline.section_filename({ trunc_width = 140 })
+
+			return statusline.combine_groups({
+				{ hl = mode_hl,                 strings = { mode } },
+				{ hl = "MiniStatuslineDevinfo", strings = { git } },
+				"%=",
+				{ hl = "MiniStatuslineFilename", strings = { filename } }
+			})
+		end,
+		inactive = function()
+			local filename = statusline.section_filename({ trunc_width = 140 })
+			return statusline.combine_groups({
+				"%=",
+				{ hl = "MiniStatuslineFilename", strings = { filename } }
+			})
+		end
+	}
+})
 require("mini.align").setup()
-require("mini.icons").setup()
 
 -- Functions
 local function pack_clean()
