@@ -103,7 +103,7 @@ require("gitsigns").setup({
 
 require("blink.cmp").setup({
 	keymap = {
-		preset = "none",
+		preset = "default",
 		["<C-e>"] = { "hide" },
 	},
 	appearance = { nerd_font_variant = "mono" },
