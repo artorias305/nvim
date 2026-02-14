@@ -181,8 +181,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Color scheme
-local theme = "vesper"
-vim.cmd.colorscheme(theme)
+-- local theme = "vesper"
+-- vim.cmd.colorscheme(theme)
+
+-- Transparent background
+vim.cmd([[
+  highlight Normal guibg=NONE ctermbg=NONE
+  highlight NormalNC guibg=NONE ctermbg=NONE
+  highlight EndOfBuffer guibg=NONE ctermbg=NONE
+]])
+
 
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
