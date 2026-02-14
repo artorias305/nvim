@@ -35,7 +35,7 @@ vim.pack.add({
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server", "cssls", "html", "ols" })
+	"bash-language-server", "cssls", "html", "jdtls", "ols" })
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -51,10 +51,10 @@ require("conform").setup({
 		go = { "gofmt" },
 		python = { "ruff_fix", "ruff_format", "ruff_organize_imports" }
 	},
-	-- format_on_save = {
-	-- 	timeout_ms = 500,
-	-- 	lsp_format = "fallback"
-	-- }
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_format = "fallback"
+	}
 })
 
 require("nvim-treesitter").setup({})
@@ -111,8 +111,7 @@ require("blink.cmp").setup({
 		menu = {
 			draw = {
 				columns = { { "label", "label_description", gap = 1 } }
-			},
-			auto_show = false
+			}
 		}
 	},
 	signature = { enabled = true },
@@ -182,8 +181,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Color scheme
--- local theme = "vesper"
--- vim.cmd.colorscheme(theme)
+local theme = "vesper"
+vim.cmd.colorscheme(theme)
 
 -- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
