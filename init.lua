@@ -10,6 +10,8 @@ vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 vim.o.termguicolors = true
 vim.o.guicursor = ""
+vim.o.showtabline = 2
+vim.o.cursorcolumn = false
 
 -- Plugins setup
 vim.pack.add({
@@ -30,7 +32,8 @@ vim.pack.add({
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	{ src = "https://github.com/dgox16/oldworld.nvim" },
-	{ src = "https://github.com/nexxeln/vesper.nvim" }
+	{ src = "https://github.com/nexxeln/vesper.nvim" },
+	{ src = "https://github.com/vague2k/vague.nvim" }
 })
 
 -- Enable LSP Servers
@@ -120,31 +123,31 @@ require("blink.cmp").setup({
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
-local statusline = require("mini.statusline")
-statusline.setup({
-	use_icons = false,
-	content = {
-		active = function()
-			local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-			local git = statusline.section_git({ trunc_width = 40 })
-			local filename = statusline.section_filename({ trunc_width = 140 })
-
-			return statusline.combine_groups({
-				{ hl = mode_hl,                 strings = { mode } },
-				{ hl = "MiniStatuslineDevinfo", strings = { git } },
-				"%=",
-				{ hl = "MiniStatuslineFilename", strings = { filename } }
-			})
-		end,
-		inactive = function()
-			local filename = statusline.section_filename({ trunc_width = 140 })
-			return statusline.combine_groups({
-				"%=",
-				{ hl = "MiniStatuslineFilename", strings = { filename } }
-			})
-		end
-	}
-})
+-- local statusline = require("mini.statusline")
+-- statusline.setup({
+-- 	use_icons = false,
+-- 	content = {
+-- 		active = function()
+-- 			local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+-- 			local git = statusline.section_git({ trunc_width = 40 })
+-- 			local filename = statusline.section_filename({ trunc_width = 140 })
+--
+-- 			return statusline.combine_groups({
+-- 				{ hl = mode_hl,                 strings = { mode } },
+-- 				{ hl = "MiniStatuslineDevinfo", strings = { git } },
+-- 				"%=",
+-- 				{ hl = "MiniStatuslineFilename", strings = { filename } }
+-- 			})
+-- 		end,
+-- 		inactive = function()
+-- 			local filename = statusline.section_filename({ trunc_width = 140 })
+-- 			return statusline.combine_groups({
+-- 				"%=",
+-- 				{ hl = "MiniStatuslineFilename", strings = { filename } }
+-- 			})
+-- 		end
+-- 	}
+-- })
 require("mini.align").setup()
 
 -- Functions
@@ -181,8 +184,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Color scheme
--- local theme = "vesper"
--- vim.cmd.colorscheme(theme)
+local theme = "vague"
+vim.cmd.colorscheme(theme)
+
+require("vague").setup({
+	transparent = true
+})
+
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "#717497", fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "TabLine", { bg = "#313131", fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d9d9d9", fg = "#313131" })
 
 -- Transparent background
 vim.cmd([[
@@ -227,6 +238,19 @@ vim.keymap.set("n", "<C-e>", ":Neotree toggle<CR>")
 
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
 vim.keymap.set("n", "<leader>sh", ":split<CR>")
+
+-- navigate tabs
+vim.keymap.set("n", "<Tab>", ":tabnext<CR>")
+vim.keymap.set("n", "<S-Tab>", ":tabprev<CR>")
+
+-- open/close
+vim.keymap.set("n", "<leader>t", ":tabnew<CR>")
+vim.keymap.set("n", "<leader>x", ":tabclose<CR>")
+
+-- jump to specific tab
+for i = 1, 8 do
+	vim.keymap.set("n", "<leader>" .. i, ":tabnext " .. i .. "<CR>")
+end
 
 -- lsp keymaps
 vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
