@@ -14,7 +14,6 @@ vim.o.mouse = ""
 
 -- Plugins setup
 vim.pack.add({
-	{ src = "https://github.com/folke/tokyonight.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
@@ -28,11 +27,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
-	{ src = "https://github.com/MunifTanjim/nui.nvim" },
-	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 	{ src = "https://github.com/akinsho/bufferline.nvim" },
-	{ src = "https://github.com/windwp/nvim-ts-autotag" }
+	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 })
 
 -- Enable LSP Servers
@@ -215,6 +212,8 @@ require("bufferline").setup({
 	}
 })
 
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>")
 vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
 
