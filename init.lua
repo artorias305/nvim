@@ -1,4 +1,3 @@
--- Options
 vim.g.mapleader = " "
 
 vim.o.number = true
@@ -10,8 +9,8 @@ vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 vim.o.termguicolors = true
 vim.o.guicursor = ""
-vim.o.showtabline = 2
 vim.o.cursorcolumn = false
+vim.o.mouse = ""
 
 -- Plugins setup
 vim.pack.add({
@@ -31,14 +30,17 @@ vim.pack.add({
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
-	{ src = "https://github.com/dgox16/oldworld.nvim" },
-	{ src = "https://github.com/nexxeln/vesper.nvim" },
-	{ src = "https://github.com/vague2k/vague.nvim" }
+	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
+	{ src = "https://github.com/akinsho/bufferline.nvim" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
-	"bash-language-server", "cssls", "html", "jdtls", "ols" })
+	"cssls", "html" })
+
+require("solarized-osaka").setup({
+	transparent = true
+})
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -112,9 +114,10 @@ require("blink.cmp").setup({
 	appearance = { nerd_font_variant = "mono" },
 	completion = {
 		menu = {
-			draw = {
-				columns = { { "label", "label_description", gap = 1 } }
-			}
+			winblend = vim.o.pumblend,
+			-- draw = {
+			-- 	columns = { { "label", "label_description", gap = 1 } }
+			-- }
 		}
 	},
 	signature = { enabled = true },
@@ -123,34 +126,8 @@ require("blink.cmp").setup({
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
--- local statusline = require("mini.statusline")
--- statusline.setup({
--- 	use_icons = false,
--- 	content = {
--- 		active = function()
--- 			local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
--- 			local git = statusline.section_git({ trunc_width = 40 })
--- 			local filename = statusline.section_filename({ trunc_width = 140 })
---
--- 			return statusline.combine_groups({
--- 				{ hl = mode_hl,                 strings = { mode } },
--- 				{ hl = "MiniStatuslineDevinfo", strings = { git } },
--- 				"%=",
--- 				{ hl = "MiniStatuslineFilename", strings = { filename } }
--- 			})
--- 		end,
--- 		inactive = function()
--- 			local filename = statusline.section_filename({ trunc_width = 140 })
--- 			return statusline.combine_groups({
--- 				"%=",
--- 				{ hl = "MiniStatuslineFilename", strings = { filename } }
--- 			})
--- 		end
--- 	}
--- })
-require("mini.align").setup()
+require("mini.statusline").setup()
 
--- Functions
 local function pack_clean()
 	local active_plugins = {}
 	local unused_plugins = {}
@@ -183,34 +160,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Color scheme
-local theme = "vague"
+local theme = "solarized-osaka"
 vim.cmd.colorscheme(theme)
 
-require("vague").setup({
-	transparent = true
-})
-
-vim.api.nvim_set_hl(0, "StatusLine", { bg = "#717497", fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "TabLine", { bg = "#313131", fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d9d9d9", fg = "#313131" })
-
--- Transparent background
-vim.cmd([[
-  highlight Normal guibg=NONE ctermbg=NONE
-  highlight NormalNC guibg=NONE ctermbg=NONE
-  highlight EndOfBuffer guibg=NONE ctermbg=NONE
-]])
-
-
--- Keymaps
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>pc", pack_clean)
 vim.keymap.set("n", "<leader>e", ":Oil<CR>")
 
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>f", builtin.find_files)
+vim.keymap.set("n", "<leader>ff", builtin.find_files)
 vim.keymap.set("n", "<leader>h", builtin.help_tags)
 vim.keymap.set("n", "<leader>g", builtin.live_grep)
 vim.keymap.set("n", "<leader>b", builtin.buffers)
@@ -230,7 +189,7 @@ vim.keymap.set("n", "<leader>z", ":e ~/.zshrc<CR>")
 
 vim.keymap.set("n", "<leader>m", builtin.man_pages)
 
-vim.keymap.set("n", "<leader>t", builtin.colorscheme)
+vim.keymap.set("n", "<leader>ft", builtin.colorscheme)
 
 vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>")
 
@@ -239,20 +198,17 @@ vim.keymap.set("n", "<C-e>", ":Neotree toggle<CR>")
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
 vim.keymap.set("n", "<leader>sh", ":split<CR>")
 
--- navigate tabs
-vim.keymap.set("n", "<Tab>", ":tabnext<CR>")
-vim.keymap.set("n", "<S-Tab>", ":tabprev<CR>")
+require("bufferline").setup({
+	options = {
+		mode = "tabs",
+		show_buffer_close_icons = false,
+		show_close_icon = false
+	}
+})
 
--- open/close
-vim.keymap.set("n", "<leader>t", ":tabnew<CR>")
-vim.keymap.set("n", "<leader>x", ":tabclose<CR>")
+vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
 
--- jump to specific tab
-for i = 1, 8 do
-	vim.keymap.set("n", "<leader>" .. i, ":tabnext " .. i .. "<CR>")
-end
-
--- lsp keymaps
 vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
 vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
 vim.keymap.set("n", "gI", require("telescope.builtin").lsp_implementations)
