@@ -97,6 +97,7 @@ require("toggleterm").setup({
 require("oil").setup({
 	default_file_explorer = true,
 	columns = {
+		"icon"
 	},
 	view_options = {
 		show_hidden = true
@@ -133,6 +134,7 @@ require("blink.cmp").setup({
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
+require("mini.icons").setup()
 require("lualine").setup()
 
 local function pack_clean()
