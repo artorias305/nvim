@@ -31,12 +31,21 @@ vim.pack.add({
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
-	{ src = "https://github.com/akinsho/bufferline.nvim" }
+	{ src = "https://github.com/akinsho/bufferline.nvim" },
+	{ src = "https://github.com/windwp/nvim-ts-autotag" }
 })
 
 -- Enable LSP Servers
 vim.lsp.enable({ "clangd", "lua_ls", "tinymist", "basedpyright", "gopls", "rust_analyzer", "ts_ls",
 	"cssls", "html" })
+
+require("nvim-ts-autotag").setup({
+	opts = {
+		enable_close = true,
+		enable_rename = true,
+		enable_close_on_slash = true
+	}
+})
 
 require("solarized-osaka").setup({
 	transparent = true
