@@ -30,6 +30,7 @@ vim.pack.add({
 	{ src = "https://github.com/craftzdog/solarized-osaka.nvim" },
 	{ src = "https://github.com/akinsho/bufferline.nvim" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" }
 })
 
 -- Enable LSP Servers
@@ -132,7 +133,7 @@ require("blink.cmp").setup({
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.statusline").setup()
+require("lualine").setup()
 
 local function pack_clean()
 	local active_plugins = {}
