@@ -8,7 +8,7 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.hlsearch = true
 vim.o.backup = false
-vim.o.showcmd=  true
+vim.o.showcmd = true
 vim.o.cmdheight = 1
 vim.o.laststatus = 3
 vim.o.expandtab = true
@@ -24,6 +24,10 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.splitkeep = "cursor"
 vim.o.mouse = ""
+
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
 
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])

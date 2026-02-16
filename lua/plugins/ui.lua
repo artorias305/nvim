@@ -1,5 +1,5 @@
 return {
-        { "folke/noice.nvim", opts = {} },
+        { "folke/noice.nvim",    opts = {} },
         { "rcarriga/nvim-notify" },
         {
                 "folke/snacks.nvim",
