@@ -31,10 +31,3 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.g.lazyvim_picker = "telescope"
 
 vim.cmd("colorscheme solarized-osaka")
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
-        callback = function(args)
-                require("conform").format({ bufnr = args.buf })
-        end
-})
