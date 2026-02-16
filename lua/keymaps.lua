@@ -10,3 +10,5 @@ map("n", "<leader>fh", builtin.help_tags, { desc = 'Telescope help tags' })
 
 map("n", "<leader>tn", ":tabnew<CR>")
 map("n", "<leader>tx", ":tabclose<CR>")
+
+map({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
