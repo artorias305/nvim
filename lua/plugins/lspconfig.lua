@@ -5,7 +5,10 @@ return {
                         "lua_ls",
                         "ts_ls",
                         "clangd",
-                        "rust-analyzer"
+                        "rust-analyzer",
+                        "tailwindcss",
+                        "cssls",
+                        "html"
                 })
         end
 }
