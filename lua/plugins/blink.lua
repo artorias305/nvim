@@ -1,11 +1,25 @@
 return {
         "saghen/blink.cmp",
-	version = "1.*",
+        version = "1.*",
         opts = {
+                fuzzy = {
+                        implementation = "prefer_rust"
+                },
+                keymap = {
+                        preset = "default",
+                        ["<C-e>"] = { "hide" }
+                },
+                appearance = {
+                        nerd_font_variant = "mono"
+                },
                 completion = {
                         menu = {
-                                winblend = vim.o.pumblend
-                        }
+                                winblend = vim.o.pumblend,
+                                draw = {
+                                        columns = { { "label", "label_description", gap = 1 } }
+                                }
+                        },
+                        documentation = { auto_show = true, auto_show_delay_ms = 200 }
                 },
                 signature = {
                         window = {

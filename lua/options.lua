@@ -36,5 +36,12 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.g.lazyvim_picker = "telescope"
 
-local theme = "cyberdream"
+local theme = "vesper"
 vim.cmd.colorscheme(theme)
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+        group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+        callback = function()
+                vim.hl.on_yank()
+        end,
+})

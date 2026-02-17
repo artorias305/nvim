@@ -27,3 +27,9 @@ map({ "n", "v", "x" }, "gR", vim.lsp.buf.rename, { desc = "LSP Buffer Rename" })
 map({ "n", "v", "x" }, "ga", vim.lsp.buf.code_action, { desc = "LSP Buffer Code Action" })
 
 map("n", "<leader>v", ":e ~/.config/nvim/<CR>", { desc = "Edit nvim config" })
+
+map("n", "<C-c>", ":noh<CR>")
+
+map("n", "s", "", { desc = "Split" })
+map("n", "sv", ":vsplit<CR>", { desc = 'Split Vertical' })
+map("n", "sh", ":split<CR>", { desc = 'Split Horizontal' })
