@@ -36,7 +36,7 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.g.lazyvim_picker = "telescope"
 
-local theme = "vesper"
+local theme = "cyberdream"
 vim.cmd.colorscheme(theme)
 
 vim.api.nvim_create_autocmd("TextYankPost", {

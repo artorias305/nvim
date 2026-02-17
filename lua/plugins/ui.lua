@@ -27,6 +27,7 @@ return {
         {
                 "folke/snacks.nvim",
                 lazy = false,
+                enabled = false,
                 opts = {
                         dashboard = {
                                 enabled = true
