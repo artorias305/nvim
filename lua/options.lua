@@ -36,4 +36,5 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.g.lazyvim_picker = "telescope"
 
-vim.cmd("colorscheme solarized-osaka")
+local theme = "solarized-osaka"
+vim.cmd.colorscheme(theme)
