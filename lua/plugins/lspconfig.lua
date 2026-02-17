@@ -9,7 +9,8 @@ return {
                         "tailwindcss",
                         "gopls",
                         "cssls",
-                        "html"
+                        "html",
+                        "zls",
                 })
         end
 }
