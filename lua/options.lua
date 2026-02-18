@@ -17,8 +17,8 @@ vim.o.inccommand = "split"
 vim.o.ignorecase = true
 vim.o.smarttab = true
 vim.o.breakindent = true
-vim.o.shiftwidth = 8
-vim.o.tabstop = 8
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 vim.o.wrap = false
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -36,7 +36,7 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.g.lazyvim_picker = "telescope"
 
-local theme = "cyberdream"
+local theme = "vesper"
 vim.cmd.colorscheme(theme)
 
 vim.api.nvim_create_autocmd("TextYankPost", {
