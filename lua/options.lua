@@ -1,3 +1,4 @@
+local theme = "vague"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
@@ -24,6 +25,9 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.splitkeep = "cursor"
 vim.o.mouse = ""
+vim.o.guicursor = ""
+
+vim.o.winborder = "rounded"
 
 vim.o.number = true
 vim.o.relativenumber = true
@@ -36,12 +40,11 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.g.lazyvim_picker = "telescope"
 
-local theme = "vesper"
 vim.cmd.colorscheme(theme)
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-        group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-        callback = function()
-                vim.hl.on_yank()
-        end,
+    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+    callback = function()
+        vim.hl.on_yank()
+    end,
 })
