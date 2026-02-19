@@ -33,3 +33,6 @@ map("n", "<C-c>", ":noh<CR>")
 map("n", "s", "", { desc = "Split" })
 map("n", "sv", ":vsplit<CR>", { desc = 'Split Vertical' })
 map("n", "sh", ":split<CR>", { desc = 'Split Horizontal' })
+
+map("n", "<Tab>", ":tabnext<CR>")
+map("n", "<S-Tab>", ":tabprevious<CR>")

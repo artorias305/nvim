@@ -48,3 +48,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.hl.on_yank()
     end,
 })
+
+vim.o.laststatus = 2
+
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "#5e5f86", fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "TabLine", { bg = "#242424" })
+vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d1d1d1", fg = "#1e1e1e" })
+
+vim.o.showtabline = 2
