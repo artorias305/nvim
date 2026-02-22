@@ -30,5 +30,8 @@ return {
         opts = {
             transparent = true
         }
+    },
+    {
+        "folke/tokyonight.nvim"
     }
 }

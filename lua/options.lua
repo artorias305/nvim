@@ -1,4 +1,4 @@
-local theme = "vague"
+local theme = "tokyonight-night"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
@@ -25,7 +25,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.splitkeep = "cursor"
 vim.o.mouse = ""
-vim.o.guicursor = ""
+-- vim.o.guicursor = ""
 
 vim.o.winborder = "rounded"
 
@@ -49,10 +49,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
-vim.o.laststatus = 2
-
-vim.api.nvim_set_hl(0, "StatusLine", { bg = "#5e5f86", fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "TabLine", { bg = "#242424" })
-vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d1d1d1", fg = "#1e1e1e" })
-
-vim.o.showtabline = 2
+-- vim.o.laststatus = 2
+--
+-- vim.api.nvim_set_hl(0, "StatusLine", { bg = "#5e5f86", fg = "#ffffff" })
+-- vim.api.nvim_set_hl(0, "TabLine", { bg = "#242424" })
+-- vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d1d1d1", fg = "#1e1e1e" })
+--
+-- vim.o.showtabline = 2
