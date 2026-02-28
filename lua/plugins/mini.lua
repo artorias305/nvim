@@ -3,6 +3,7 @@ return {
     config = function()
         require("mini.pairs").setup()
         require("mini.surround").setup()
+        require("mini.icons").setup()
         -- local statusline = require("mini.statusline")
         -- statusline.setup({
         --     use_icons = false,
