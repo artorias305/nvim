@@ -1,7 +1,6 @@
 return {
 	"saghen/blink.cmp",
 	version = "1.*",
-	enabled = false,
 	opts = {
 		fuzzy = {
 			implementation = "prefer_rust",
