@@ -34,9 +34,6 @@ vim.o.signcolumn = "yes"
 
 vim.o.termguicolors = true
 
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
 vim.g.lazyvim_picker = "telescope"
 
 vim.cmd.colorscheme(theme)
@@ -45,5 +42,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
 	callback = function()
 		vim.hl.on_yank()
+	end,
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function(args)
+		if args.match == "vague" then
+			vim.o.showtabline = 2
+			vim.api.nvim_set_hl(0, "StatusLine", { fg = "#ffffff", bg = "#6b6891" })
+			vim.api.nvim_set_hl(0, "TabLine", { fg = "#ffffff", bg = "#2a2a2a" })
+			vim.api.nvim_set_hl(0, "TabLineSel", { fg = "#1c1c1c", bg = "#dedede" })
+			vim.o.guicursor = ""
+		end
 	end,
 })
