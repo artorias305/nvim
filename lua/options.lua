@@ -45,14 +45,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	callback = function(args)
-		if args.match == "vague" then
-			vim.o.showtabline = 2
-			vim.api.nvim_set_hl(0, "StatusLine", { fg = "#ffffff", bg = "#6b6891" })
-			vim.api.nvim_set_hl(0, "TabLine", { fg = "#ffffff", bg = "#2a2a2a" })
-			vim.api.nvim_set_hl(0, "TabLineSel", { fg = "#1c1c1c", bg = "#dedede" })
-			vim.o.guicursor = ""
-		end
-	end,
-})
+vim.o.showtabline = 2
