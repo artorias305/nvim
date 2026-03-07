@@ -36,4 +36,7 @@ return {
 	{
 		"folke/tokyonight.nvim",
 	},
+    {
+        "dgox16/oldworld.nvim"
+    }
 }

@@ -1,4 +1,4 @@
-local theme = "vesper"
+local theme = "oldworld"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
@@ -46,3 +46,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.o.showtabline = 2
+
+vim.o.guicursor = ""
