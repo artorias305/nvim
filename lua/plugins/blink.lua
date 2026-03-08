@@ -2,11 +2,20 @@ return {
 	"saghen/blink.cmp",
 	version = "1.*",
 	opts = {
+		completion = {
+			menu = {
+				auto_show = false,
+			},
+		},
 		fuzzy = {
 			implementation = "prefer_rust",
 		},
 		keymap = {
 			preset = "default",
+			["<C-n>"] = {
+				"show",
+				"select_next",
+			},
 			["<C-e>"] = { "hide" },
 		},
 		appearance = {
