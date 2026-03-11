@@ -1,4 +1,4 @@
-local theme = "custom"
+local theme = "vague"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
