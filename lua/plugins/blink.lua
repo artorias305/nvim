@@ -10,6 +10,9 @@ return {
 		fuzzy = {
 			implementation = "prefer_rust",
 		},
+        signature = {
+            enabled = true
+        },
 		keymap = {
 			preset = "default",
 			["<C-n>"] = {

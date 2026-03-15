@@ -11,6 +11,7 @@ return {
 			"cssls",
 			"html",
 			"zls",
+            "gopls"
 		})
 	end,
 }
