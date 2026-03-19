@@ -11,7 +11,8 @@ return {
 			"cssls",
 			"html",
 			"zls",
-            "gopls"
+            "gopls",
+            "basedpyright"
 		})
 	end,
 }

@@ -38,5 +38,8 @@ return {
 	},
     {
         "dgox16/oldworld.nvim"
+    },
+    {
+        "mofiqul/vscode.nvim"
     }
 }

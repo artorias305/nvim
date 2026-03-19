@@ -1,4 +1,4 @@
-local theme = "tokyonight-night"
+local theme = "vscode"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
@@ -46,3 +46,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.o.showtabline = 0
+vim.o.mouse = "a"
