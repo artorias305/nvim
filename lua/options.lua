@@ -1,4 +1,4 @@
-local theme = "vscode"
+local theme = "pewds"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
