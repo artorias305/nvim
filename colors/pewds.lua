@@ -54,11 +54,11 @@ vim.api.nvim_set_hl(0, "Macro", { fg = colors.magenta })
 vim.api.nvim_set_hl(0, "Structure", { fg = colors.yellow })
 
 -- Line numbers
-vim.api.nvim_set_hl(0, "LineNr", { fg = colors.black })
+vim.api.nvim_set_hl(0, "LineNr", { fg = colors.yellow })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.blue, bold = true })
 vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.dark_bg })
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = colors.black })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = colors.black })
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = colors.blue })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = colors.blue })
 
 -- StatusLine (for mini.statusline)
 vim.api.nvim_set_hl(0, "StatusLine", { fg = colors.fg, bg = colors.dark_bg })

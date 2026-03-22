@@ -47,3 +47,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.o.showtabline = 0
 vim.o.mouse = "a"
+vim.o.guicursor = ""
