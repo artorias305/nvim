@@ -1,4 +1,4 @@
-local theme = "pewds"
+local theme = "tokyonight-night"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
@@ -25,7 +25,6 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.splitkeep = "cursor"
 vim.o.mouse = ""
-
 vim.o.winborder = "rounded"
 
 vim.o.number = true
@@ -47,4 +46,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.o.showtabline = 0
 vim.o.mouse = "a"
-vim.o.guicursor = ""
+-- vim.o.guicursor = ""
+vim.o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
