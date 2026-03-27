@@ -1,22 +1,22 @@
-local theme = "tokyonight-night"
+local theme = "cyberdream"
 vim.g.mapleader = " "
 
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 
 vim.o.title = true
-vim.o.autoindent = true
-vim.o.smartindent = true
+-- vim.o.autoindent = true
+-- vim.o.smartindent = true
 vim.o.hlsearch = true
 vim.o.backup = false
 vim.o.showcmd = true
-vim.o.cmdheight = 1
-vim.o.laststatus = 3
-vim.o.expandtab = true
+-- vim.o.cmdheight = 1
+-- vim.o.laststatus = 3
+-- vim.o.expandtab = true
 vim.o.scrolloff = 10
 vim.o.inccommand = "split"
 vim.o.ignorecase = true
-vim.o.smarttab = true
+-- vim.o.smarttab = true
 vim.o.breakindent = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
@@ -25,7 +25,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.splitkeep = "cursor"
 vim.o.mouse = ""
-vim.o.winborder = "rounded"
+-- vim.o.winborder = "rounded"
 
 vim.o.number = true
 vim.o.relativenumber = true
@@ -44,8 +44,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.o.showtabline = 0
+-- vim.o.showtabline = 0
 vim.o.mouse = "a"
 -- vim.o.guicursor = ""
 vim.o.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = vim.opt.listchars + "space:·"
+vim.o.cursorline = true
