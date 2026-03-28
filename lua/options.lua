@@ -25,7 +25,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.splitkeep = "cursor"
 vim.o.mouse = ""
--- vim.o.winborder = "rounded"
+vim.o.winborder = "rounded"
 
 vim.o.number = true
 vim.o.relativenumber = true
