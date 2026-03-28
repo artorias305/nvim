@@ -8,6 +8,7 @@ return {
 			rust = { "rustfmt", lsp_format = "fallback" },
 			typescript = { "prettierd", "prettier" },
 			go = { "goimports", "gofmt" },
+			zig = { "zigfmt" },
 		},
 		format_on_save = {
 			timeout_ms = 500,
