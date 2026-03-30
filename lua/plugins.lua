@@ -7,6 +7,9 @@ vim.pack.add({
 	"https://github.com/nvim-mini/mini.nvim",
 	"https://github.com/NMAC427/guess-indent.nvim",
 	"https://github.com/lukas-reineke/indent-blankline.nvim",
+    'https://github.com/nvim-telescope/telescope.nvim',
+	'https://github.com/nvim-lua/plenary.nvim',
+	'https://github.com/nvim-telescope/telescope-fzf-native.nvim'
 })
 
 require("ibl").setup({
