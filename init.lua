@@ -1,3 +1,6 @@
-require("plugins")
+require("highlights")
 require("options")
+require("plugins")
 require("keymaps")
+
+vim.cmd.colorscheme("cyberdream")
