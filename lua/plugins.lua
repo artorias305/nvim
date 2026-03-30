@@ -6,27 +6,10 @@ vim.pack.add({
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/nvim-mini/mini.nvim",
 	"https://github.com/NMAC427/guess-indent.nvim",
-	"https://github.com/lukas-reineke/indent-blankline.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-})
-
-require("ibl").setup({
-	indent = {
-		highlight = {
-			"WhiteSpace",
-		},
-		char = "┊",
-	},
-	scope = {
-		show_start = false,
-		show_end = false,
-		char = "│",
-		highlight = {
-			"IndentBlanklineChar",
-		},
-	},
+	"https://github.com/nexxeln/vesper.nvim"
 })
 
 require("conform").setup({

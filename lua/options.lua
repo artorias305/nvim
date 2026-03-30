@@ -4,8 +4,8 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
-vim.opt.list = true
-vim.opt.listchars = vim.opt.listchars + "space:·"
+-- vim.opt.list = true
+-- vim.opt.listchars = vim.opt.listchars + "space:·"
 
 vim.o.mouse = "a"
 
@@ -24,3 +24,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.o.cursorline = true
+
+vim.o.smoothscroll = true
+vim.o.showmode = false
+vim.o.undofile = true
+vim.o.smartcase = true
+vim.o.ignorecase = true
