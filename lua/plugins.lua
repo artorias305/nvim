@@ -9,7 +9,7 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-	"https://github.com/nexxeln/vesper.nvim"
+	"https://github.com/nexxeln/vesper.nvim",
 })
 
 require("conform").setup({
@@ -31,8 +31,8 @@ require("conform").setup({
 require("oil").setup({
 	columns = {},
 	view_options = {
-		show_hidden = true
-	}
+		show_hidden = true,
+	},
 })
 
 require("blink.cmp").setup({
@@ -106,4 +106,4 @@ require("mini.diff").setup({
 })
 require("mini.git").setup()
 
-vim.lsp.enable({ "clangd", "rust-analyzer", "gopls", "zls" })
+vim.lsp.enable({ "clangd", "rust_analyzer", "gopls", "zls" })
