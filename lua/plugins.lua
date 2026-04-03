@@ -11,6 +11,7 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nexxeln/vesper.nvim",
 	"https://github.com/folke/which-key.nvim",
+	"https://github.com/folke/tokyonight.nvim",
 })
 
 require("conform").setup({
@@ -39,9 +40,9 @@ require("oil").setup({
 require("blink.cmp").setup({
 	completion = {
 		menu = {
-			draw = {
-				columns = { { "label", "label_description", gap = 1 } },
-			},
+			-- draw = {
+			-- 	columns = { { "label", "label_description", gap = 1 } },
+			-- },
 			auto_show = true,
 		},
 	},
@@ -73,7 +74,7 @@ require("cyberdream").setup({
 
 require("mini.pairs").setup()
 require("mini.surround").setup()
--- require("mini.icons").setup()
+require("mini.icons").setup()
 local statusline = require("mini.statusline")
 statusline.setup({
 	use_icons = false,
