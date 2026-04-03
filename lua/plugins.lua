@@ -10,6 +10,7 @@ vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nexxeln/vesper.nvim",
+	"https://github.com/folke/which-key.nvim",
 })
 
 require("conform").setup({
@@ -107,3 +108,6 @@ require("mini.diff").setup({
 require("mini.git").setup()
 
 vim.lsp.enable({ "clangd", "rust_analyzer", "gopls", "zls" })
+
+local telescope = require("telescope")
+pcall(telescope.load_extension, "fzf")

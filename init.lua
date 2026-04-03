@@ -1,4 +1,3 @@
--- require("highlights")
 require("options")
 require("plugins")
 require("keymaps")
