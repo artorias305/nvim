@@ -23,3 +23,4 @@ map({ "n", "v", "x" }, "gy", builtin.lsp_type_definitions, { desc = "LSP Type De
 map({ "n", "v", "x" }, "gD", vim.lsp.buf.declaration, { desc = "LSP Buffer Declaration" })
 map({ "n", "v", "x" }, "gR", vim.lsp.buf.rename, { desc = "LSP Buffer Rename" })
 map({ "n", "v", "x" }, "ga", vim.lsp.buf.code_action, { desc = "LSP Buffer Code Action" })
+map("n", "<leader>h", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git blame line" })

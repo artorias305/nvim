@@ -12,6 +12,18 @@ vim.pack.add({
 	"https://github.com/nexxeln/vesper.nvim",
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/folke/tokyonight.nvim",
+	"https://github.com/lewis6991/gitsigns.nvim",
+})
+
+require("gitsigns").setup({
+	signs = {
+		add = { text = "+" }, ---@diagnostic disable-line: missing-fields
+		change = { text = "~" }, ---@diagnostic disable-line: missing-fields
+		delete = { text = "_" }, ---@diagnostic disable-line: missing-fields
+		topdelete = { text = "‾" }, ---@diagnostic disable-line: missing-fields
+		changedelete = { text = "~" }, ---@diagnostic disable-line: missing-fields
+	},
+	current_line_blame = true,
 })
 
 require("conform").setup({
@@ -31,7 +43,7 @@ require("conform").setup({
 })
 
 require("oil").setup({
-	columns = {},
+	columns = { "icon" },
 	view_options = {
 		show_hidden = true,
 	},
@@ -39,12 +51,7 @@ require("oil").setup({
 
 require("blink.cmp").setup({
 	completion = {
-		menu = {
-			-- draw = {
-			-- 	columns = { { "label", "label_description", gap = 1 } },
-			-- },
-			auto_show = true,
-		},
+		documentation = { auto_show = false, auto_show_delay_ms = 500 },
 	},
 	fuzzy = {
 		implementation = "prefer_rust",
@@ -54,14 +61,12 @@ require("blink.cmp").setup({
 	},
 	keymap = {
 		preset = "default",
-		["<C-n>"] = {
-			"show",
-			"select_next",
-		},
-		["<C-e>"] = { "hide" },
 	},
 	appearance = {
 		nerd_font_variant = "mono",
+	},
+	sources = {
+		default = { "lsp", "path", "snippets" },
 	},
 })
 
@@ -75,40 +80,11 @@ require("cyberdream").setup({
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.icons").setup()
-local statusline = require("mini.statusline")
-statusline.setup({
-	use_icons = false,
-	content = {
-		active = function()
-			local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-			local git = statusline.section_git({ trunc_width = 40 })
-			local filename = statusline.section_filename({ trunc_width = 140 })
-
-			return statusline.combine_groups({
-				{ hl = mode_hl, strings = { mode } },
-				{ hl = "MiniStatuslineDevinfo", strings = { git } },
-				"%=",
-				{ hl = "MiniStatuslineFilename", strings = { filename } },
-			})
-		end,
-		inactive = function()
-			local filename = statusline.section_filename({ trunc_width = 140 })
-			return statusline.combine_groups({
-				"%=",
-				{ hl = "MiniStatuslineFilename", strings = { filename } },
-			})
-		end,
-	},
+require("mini.statusline").setup({
+	use_icons = vim.g.have_nerd_font,
 })
-require("mini.diff").setup({
-	view = {
-		style = "sign",
-		signs = { add = "+", change = "~", delete = "_" },
-	},
-})
-require("mini.git").setup()
 
-vim.lsp.enable({ "clangd", "rust_analyzer", "gopls", "zls" })
+vim.lsp.enable({ "clangd", "rust_analyzer", "gopls", "zls", "ols" })
 
 local telescope = require("telescope")
 pcall(telescope.load_extension, "fzf")
