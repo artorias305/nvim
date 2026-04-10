@@ -13,7 +13,24 @@ vim.pack.add({
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/mason-org/mason.nvim",
+	"https://github.com/mason-org/mason-lspconfig.nvim",
+	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+	"https://github.com/j-hui/fidget.nvim",
 })
+
+local servers = { clangd = {}, rust_analyzer = {}, gopls = {}, zls = {}, ols = {}, ts_ls = {}, stylua = {} }
+
+local ensure_installed = vim.tbl_keys(servers or {})
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+for name, server in ipairs(servers) do
+	vim.lsp.config(name, server)
+	vim.lsp.enable(name)
+end
 
 require("gitsigns").setup({
 	signs = {
@@ -83,8 +100,6 @@ require("mini.icons").setup()
 require("mini.statusline").setup({
 	use_icons = vim.g.have_nerd_font,
 })
-
-vim.lsp.enable({ "clangd", "rust_analyzer", "gopls", "zls", "ols" })
 
 local telescope = require("telescope")
 pcall(telescope.load_extension, "fzf")
