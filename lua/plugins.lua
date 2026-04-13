@@ -9,6 +9,7 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
 	"https://github.com/nexxeln/vesper.nvim",
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/folke/tokyonight.nvim",
@@ -17,15 +18,31 @@ vim.pack.add({
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 	"https://github.com/j-hui/fidget.nvim",
+	"https://github.com/vague2k/vague.nvim"
 })
 
-local servers = { clangd = {}, rust_analyzer = {}, gopls = {}, zls = {}, ols = {}, ts_ls = {}, stylua = {} }
+require("vague").setup({
+	transparent = true
+})
+
+local servers = {
+	clangd = {},
+	rust_analyzer = {},
+	gopls = {},
+	zls = {},
+	ols = {},
+	ts_ls = {},
+	stylua = {},
+	basedpyright = {},
+	lua_ls = {},
+}
 
 local ensure_installed = vim.tbl_keys(servers or {})
 
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+require("fidget").setup()
 
 for name, server in ipairs(servers) do
 	vim.lsp.config(name, server)
@@ -43,21 +60,21 @@ require("gitsigns").setup({
 	current_line_blame = true,
 })
 
-require("conform").setup({
-	formatters_by_ft = {
-		lua = { "stylua" },
-		c = { "clang-format" },
-		cpp = { "clang-format" },
-		rust = { "rustfmt", lsp_format = "fallback" },
-		typescript = { "prettierd", "prettier" },
-		go = { "goimports", "gofmt" },
-		zig = { "zigfmt" },
-	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
-})
+-- require("conform").setup({
+-- 	formatters_by_ft = {
+-- 		lua = { "stylua" },
+-- 		c = { "clang-format" },
+-- 		cpp = { "clang-format" },
+-- 		rust = { "rustfmt", lsp_format = "fallback" },
+-- 		typescript = { "prettierd", "prettier" },
+-- 		go = { "goimports", "gofmt" },
+-- 		zig = { "zigfmt" },
+-- 	},
+-- 	format_on_save = {
+-- 		timeout_ms = 500,
+-- 		lsp_format = "fallback",
+-- 	},
+-- })
 
 require("oil").setup({
 	columns = { "icon" },
@@ -97,9 +114,45 @@ require("cyberdream").setup({
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.icons").setup()
-require("mini.statusline").setup({
-	use_icons = vim.g.have_nerd_font,
-})
 
 local telescope = require("telescope")
-pcall(telescope.load_extension, "fzf")
+telescope.setup({
+	defaults = {
+		preview = { treesitter = true },
+		color_devicons = true,
+		sorting_strategy = "ascending",
+		borderchars = {
+			"", -- top
+			"", -- right
+			"", -- bottom
+			"", -- left
+			"", -- top-left
+			"", -- top-right
+			"", -- bottom-right
+			"", -- bottom-left
+		},
+		path_displays = { "smart" },
+		layout_config = {
+			height = 100,
+			width = 400,
+			prompt_position = "top",
+			preview_cutoff = 40,
+		},
+	},
+})
+telescope.load_extension("ui-select")
+
+-- vim.api.nvim_create_autocmd('LspAttach', {
+-- 	group = vim.api.nvim_create_augroup('my.lsp', {}),
+-- 	callback = function(args)
+-- 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+-- 		if client:supports_method('textDocument/completion') then
+-- 			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
+-- 			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+-- 			client.server_capabilities.completionProvider.triggerCharacters = chars
+-- 			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+-- 		end
+-- 	end,
+-- })
+
+-- vim.cmd [[set completeopt+=menuone,noselect,popup]]
