@@ -33,7 +33,7 @@ local servers = {
 	ols = {},
 	ts_ls = {},
 	stylua = {},
-	basedpyright = {},
+	pyright = {},
 	lua_ls = {},
 }
 
