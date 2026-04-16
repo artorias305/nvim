@@ -23,32 +23,6 @@ vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 })
 
-treesitter = {
-	"c",
-	"cpp",
-	"go",
-	"rust",
-	"html",
-	"javascript",
-	"typescript",
-	"react",
-	"typescriptreact",
-	"css",
-}
-
-require("nvim-treesitter").setup({
-	ensure_installed = {
-		treesitter,
-	},
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = treesitter,
-	callback = function()
-		vim.treesitter.start()
-	end,
-})
-
 require("nvim-ts-autotag").setup({
 	opts = {
 		enable_close = true,

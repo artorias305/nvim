@@ -7,9 +7,8 @@ vim.o.relativenumber = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.showtabline = 2
--- vim.opt.list = true
--- vim.opt.listchars = vim.opt.listchars + "space:·"
--- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.o.mouse = "a"
 
