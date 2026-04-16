@@ -18,11 +18,47 @@ vim.pack.add({
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 	"https://github.com/j-hui/fidget.nvim",
-	"https://github.com/vague2k/vague.nvim"
+	"https://github.com/vague2k/vague.nvim",
+	"https://github.com/windwp/nvim-ts-autotag",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+})
+
+treesitter = {
+	"c",
+	"cpp",
+	"go",
+	"rust",
+	"html",
+	"javascript",
+	"typescript",
+	"react",
+	"typescriptreact",
+	"css",
+}
+
+require("nvim-treesitter").setup({
+	ensure_installed = {
+		treesitter,
+	},
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = treesitter,
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
+
+require("nvim-ts-autotag").setup({
+	opts = {
+		enable_close = true,
+		enable_rename = true,
+		enable_close_on_slash = true,
+	},
 })
 
 require("vague").setup({
-	transparent = true
+	transparent = true,
 })
 
 local servers = {
