@@ -18,7 +18,6 @@ vim.pack.add({
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 	"https://github.com/j-hui/fidget.nvim",
-	"https://github.com/vague2k/vague.nvim",
 	"https://github.com/windwp/nvim-ts-autotag",
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 })
@@ -29,10 +28,6 @@ require("nvim-ts-autotag").setup({
 		enable_rename = true,
 		enable_close_on_slash = true,
 	},
-})
-
-require("vague").setup({
-	transparent = true,
 })
 
 local servers = {
@@ -70,22 +65,6 @@ require("gitsigns").setup({
 	current_line_blame = true,
 })
 
--- require("conform").setup({
--- 	formatters_by_ft = {
--- 		lua = { "stylua" },
--- 		c = { "clang-format" },
--- 		cpp = { "clang-format" },
--- 		rust = { "rustfmt", lsp_format = "fallback" },
--- 		typescript = { "prettierd", "prettier" },
--- 		go = { "goimports", "gofmt" },
--- 		zig = { "zigfmt" },
--- 	},
--- 	format_on_save = {
--- 		timeout_ms = 500,
--- 		lsp_format = "fallback",
--- 	},
--- })
-
 require("oil").setup({
 	columns = { "icon" },
 	view_options = {
@@ -114,55 +93,33 @@ require("blink.cmp").setup({
 	},
 })
 
-require("cyberdream").setup({
-	transparent = true,
-	borderless_pickers = false,
-	saturation = 0.95,
-	cache = true,
-})
-
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.icons").setup()
+-- require("mini.icons").setup()
 
-local telescope = require("telescope")
-telescope.setup({
-	defaults = {
-		preview = { treesitter = true },
-		color_devicons = true,
-		sorting_strategy = "ascending",
-		borderchars = {
-			"", -- top
-			"", -- right
-			"", -- bottom
-			"", -- left
-			"", -- top-left
-			"", -- top-right
-			"", -- bottom-right
-			"", -- bottom-left
-		},
-		path_displays = { "smart" },
-		layout_config = {
-			height = 100,
-			width = 400,
-			prompt_position = "top",
-			preview_cutoff = 40,
-		},
-	},
-})
-telescope.load_extension("ui-select")
-
--- vim.api.nvim_create_autocmd('LspAttach', {
--- 	group = vim.api.nvim_create_augroup('my.lsp', {}),
--- 	callback = function(args)
--- 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
--- 		if client:supports_method('textDocument/completion') then
--- 			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
--- 			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
--- 			client.server_capabilities.completionProvider.triggerCharacters = chars
--- 			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
--- 		end
--- 	end,
+-- local telescope = require("telescope")
+-- telescope.setup({
+-- 	defaults = {
+-- 		preview = { treesitter = true },
+-- 		color_devicons = true,
+-- 		sorting_strategy = "ascending",
+-- 		borderchars = {
+-- 			"", -- top
+-- 			"", -- right
+-- 			"", -- bottom
+-- 			"", -- left
+-- 			"", -- top-left
+-- 			"", -- top-right
+-- 			"", -- bottom-right
+-- 			"", -- bottom-left
+-- 		},
+-- 		path_displays = { "smart" },
+-- 		layout_config = {
+-- 			height = 100,
+-- 			width = 400,
+-- 			prompt_position = "top",
+-- 			preview_cutoff = 40,
+-- 		},
+-- 	},
 -- })
-
--- vim.cmd [[set completeopt+=menuone,noselect,popup]]
+-- telescope.load_extension("ui-select")
