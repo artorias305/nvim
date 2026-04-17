@@ -10,7 +10,7 @@ vim.o.showtabline = 2
 
 vim.o.mouse = "a"
 
-vim.o.winborder = "rounded"
+-- vim.o.winborder = "rounded"
 vim.o.hlsearch = true
 vim.o.backup = false
 vim.o.signcolumn = "yes"
@@ -31,7 +31,7 @@ vim.o.showmode = false
 vim.o.undofile = false
 vim.o.smartcase = true
 vim.o.ignorecase = true
-vim.o.guicursor = ""
+-- vim.o.guicursor = ""
 
 local function pack_clean()
 	local active_plugins = {}
