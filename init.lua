@@ -34,6 +34,7 @@ vim.diagnostic.config {
 	jump = { float = true }
 }
 vim.o.showtabline = 2
+vim.o.winborder = "rounded"
 
 -- Plugins
 vim.pack.add({
@@ -57,7 +58,7 @@ require("oil").setup()
 require("mini.pairs").setup()
 require("mini.statusline").setup()
 require("mason").setup()
-servers = { "rust_analyzer", "gopls", "clangd", "lua_ls", "basedpyright" }
+servers = { "rust_analyzer", "gopls", "clangd", "lua_ls", "basedpyright", "ruff" }
 require("mason-lspconfig").setup({
 	ensure_installed = servers
 })
@@ -110,6 +111,12 @@ map("n", "<Tab>", ":tabnext<CR>")
 map("n", "<S-Tab>", ":tabprevious<CR>")
 map("n", "<leader>tn", ":tabnew<CR>")
 map("n", "<leader>tx", ":tabclose<CR>")
+map("n", "<leader>bt", function()
+	local current = vim.api.nvim_get_current_buf()
+	vim.cmd("bprevious")
+	vim.cmd("tabnew")
+	vim.api.nvim_set_current_buf(current)
+end)
 
 -- Cmds
 vim.cmd.colorscheme(theme)
