@@ -33,6 +33,7 @@ vim.diagnostic.config {
 	virtual_lines = false,
 	jump = { float = true }
 }
+vim.o.showtabline = 2
 
 -- Plugins
 vim.pack.add({
@@ -44,10 +45,11 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/vague2k/vague.nvim",
 	"https://github.com/saghen/blink.cmp",
 	"https://github.com/nvim-tree/nvim-web-devicons",
-	"https://github.com/folke/tokyonight.nvim"
+	"https://github.com/folke/tokyonight.nvim",
+	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
+	"https://github.com/folke/which-key.nvim"
 })
 
 -- Setups
@@ -59,6 +61,14 @@ servers = { "rust_analyzer", "gopls", "clangd", "lua_ls", "basedpyright" }
 require("mason-lspconfig").setup({
 	ensure_installed = servers
 })
+require("telescope").setup({
+	extensions = {
+		['ui-select'] = { require("telescope.themes").get_dropdown() }
+	}
+})
+
+pcall(require("telescope").load_extension, 'fzf')
+pcall(require("telescope").load_extension, 'ui-select')
 
 require("blink.cmp").setup({
 	keymap = {
@@ -89,10 +99,17 @@ map("n", "<leader>fg", builtin.live_grep)
 map("n", "<leader>fh", builtin.help_tags)
 map("n", "<leader>fc", builtin.git_commits)
 map("n", "<leader>ft", builtin.colorscheme)
+map("n", "<leader>fk", builtin.keymaps)
+map("n", "<leader>fb", builtin.buffers)
 map("n", "<leader>m", builtin.git_branches)
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<C-c>", ":noh<CR>")
 map("n", "<leader>q", vim.diagnostic.setloclist)
+map("n", "<leader>v", ":e ~/.config/nvim/init.lua<CR>")
+map("n", "<Tab>", ":tabnext<CR>")
+map("n", "<S-Tab>", ":tabprevious<CR>")
+map("n", "<leader>tn", ":tabnew<CR>")
+map("n", "<leader>tx", ":tabclose<CR>")
 
 -- Cmds
 vim.cmd.colorscheme(theme)
