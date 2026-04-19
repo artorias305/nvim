@@ -1,17 +1,45 @@
-require("options")
-require("plugins")
-require("keymaps")
+vim.g.mapleader = " "
 
-local theme = "tokyonight-night"
+local map = vim.keymap.set
 
-vim.cmd.colorscheme(theme)
+-- Options
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
 
-if theme == "vague" then
-	vim.api.nvim_set_hl(0, "TabLineFill", { bg = "#2b2a33" })
-	vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d2d2d2", fg = "#2b2a33" })
-	vim.api.nvim_set_hl(0, "TabLine", { fg = "#d2d2d2", bg = "#2b2a33" })
-	vim.api.nvim_set_hl(0, "StatusLine", { bg = "#6e6a86", fg = "#d0cdda" })
-elseif theme == "tokyonight-night" then
-	vim.opt.list = true
-	vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-end
+-- Plugins
+vim.pack.add({
+	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/nvim-mini/mini.nvim",
+	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/mason-org/mason.nvim",
+	"https://github.com/mason-org/mason-lspconfig.nvim",
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+	"https://github.com/nvim-lua/plenary.nvim"
+})
+
+-- Setups
+require("oil").setup()
+require("mini.pairs").setup()
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"rust_analyzer",
+		"gopls",
+		"clangd",
+		"lua_ls",
+		"ts_ls",
+		"basedpyright"
+	}
+})
+
+-- Keymaps
+local builtin = require("telescope.builtin")
+
+map("n", "<leader>e", ":Oil<CR>")
+
+map("n", "<leader>ff", builtin.find_files)
+map("n", "<leader>fg", builtin.live_grep)
+map("n", "<leader>fh", builtin.help_tags)
+map("n", "<leader>fc", builtin.git_commits)
