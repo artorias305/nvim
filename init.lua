@@ -50,7 +50,8 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
-	"https://github.com/folke/which-key.nvim"
+	"https://github.com/folke/which-key.nvim",
+	"https://github.com/RaafatTurki/hex.nvim"
 })
 
 -- Setups
@@ -58,7 +59,7 @@ require("oil").setup()
 require("mini.pairs").setup()
 require("mini.statusline").setup()
 require("mason").setup()
-servers = { "rust_analyzer", "gopls", "clangd", "lua_ls", "basedpyright", "ruff" }
+local servers = { "rust_analyzer", "gopls", "clangd", "lua_ls", "basedpyright", "ruff", "jdtls" }
 require("mason-lspconfig").setup({
 	ensure_installed = servers
 })
@@ -90,6 +91,8 @@ require("blink.cmp").setup({
 
 vim.lsp.enable(servers)
 
+require("hex").setup()
+
 -- Keymaps
 local builtin = require("telescope.builtin")
 
@@ -117,6 +120,7 @@ map("n", "<leader>bt", function()
 	vim.cmd("tabnew")
 	vim.api.nvim_set_current_buf(current)
 end)
+map("n", "<leader>h", ":HexToggle<CR>")
 
 -- Cmds
 vim.cmd.colorscheme(theme)
