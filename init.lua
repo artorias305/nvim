@@ -6,7 +6,7 @@ vim.g.mapleader = " "
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes"
-vim.o.winborder = "rounded"
+-- vim.o.winborder = "rounded"
 vim.o.breakindent = true
 vim.o.showmode = false
 vim.o.ignorecase = true
@@ -36,28 +36,26 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/chomosuke/typst-preview.nvim",
+	"https://github.com/saghen/blink.lib",
+	{ src = "https://github.com/saghen/blink.cmp",                version = vim.version.range("1.*") }
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if client:supports_method('textDocument/completion') then
-			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
-			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-		end
-	end,
+require("blink.cmp").setup({
+	keymap = { preset = "default" },
+	appearance = { nerd_font_variant = "mono" },
+	completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
+	fuzzy = { implementation = 'lua' },
+	signature = { enabled = true },
+	sources = {
+		default = { "lsp", "path", "snippets", "buffer" },
+	},
 })
-
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
 local builtin = require("telescope.builtin")
 
 local langs = { 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'python', 'go' }
 
-require("nvim-treesitter").install(themes)
+require("nvim-treesitter").install(langs)
 
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = langs,
@@ -94,6 +92,11 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = servers
 })
+
+vim.lsp.config('*', {
+	capabilities = require('blink.cmp').get_lsp_capabilities()
+})
+
 vim.lsp.enable(servers)
 
 local theme_state_file = vim.fs.joinpath(vim.fn.stdpath("state"), "last_theme.txt")
@@ -186,3 +189,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 })
 
 apply_custom_theme_overrides()
+
+vim.api.nvim_create_autocmd('InsertCharPre', {
+	callback = function()
+		local char = vim.v.char
+		if char == "(" or char == "," then
+			vim.lsp.buf.signature_help()
+		end
+	end
+})
