@@ -1,200 +1,92 @@
-local map = vim.keymap.set
-local servers = { "lua_ls", "clangd", "rust_analyzer", "gopls", "pyright", "tinymist", "ts_ls" }
-
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.signcolumn = "yes"
--- vim.o.winborder = "rounded"
-vim.o.breakindent = true
-vim.o.showmode = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.splitright = true
-vim.o.splitbelow = true
+vim.o.signcolumn = "yes"
 vim.o.confirm = true
-vim.o.confirm = true
-vim.o.termguicolors = true
+vim.o.swapfile = false
+vim.o.ttimeoutlen = 1
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.cmd('syntax off')
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Highlight when yanking (copying) text',
-	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-	callback = function() vim.hl.on_yank() end,
+vim.diagnostic.config({
+	severity_sort = true,
+	update_in_insert = false,
+	flat = { source = 'if_many' },
+	jump = { float = true }
 })
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+	group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+	callback = function() vim.highlight.on_yank() end,
+})
+
+local servers = { "lua_ls", "pyright", "clangd", "gopls", "rust_analyzer", "ts_ls" }
+
 vim.pack.add({
-	"https://github.com/vague-theme/vague.nvim",
+	"https://github.com/nexxeln/vesper.nvim",
 	"https://github.com/nvim-mini/mini.nvim",
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/mason-org/mason-lspconfig.nvim",
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/stevearc/oil.nvim",
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/nvim-tree/nvim-web-devicons",
-	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/folke/tokyonight.nvim",
-	"https://github.com/chomosuke/typst-preview.nvim",
-	"https://github.com/saghen/blink.lib",
-	{ src = "https://github.com/saghen/blink.cmp",                version = vim.version.range("1.*") }
+	{ src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') }
 })
 
-require("blink.cmp").setup({
-	keymap = { preset = "default" },
-	appearance = { nerd_font_variant = "mono" },
-	completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
-	fuzzy = { implementation = 'lua' },
-	signature = { enabled = true },
-	sources = {
-		default = { "lsp", "path", "snippets", "buffer" },
-	},
-})
-
-local builtin = require("telescope.builtin")
-
-local langs = { 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'python', 'go' }
-
-require("nvim-treesitter").install(langs)
-
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = langs,
-	callback = function() vim.treesitter.start() end
-})
-
-require("telescope").setup({
-	defaults = {
-		preview = { treesitter = true },
-		color_devicons = true,
-		sorting_strategy = "ascending",
-		borderchars = {
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			""
-		},
-		path_displays = { "smart" },
-		layout_config = {
-			height = 100, width = 400, prompt_position = "top", preview_cutoff = 40
-		}
-	}
-})
 require("oil").setup({
-	columns = {
-		"icon"
+	view_options = {
+		show_hidden = true
 	}
+})
+require("mini.pairs").setup()
+require("mini.pick").setup()
+local statusline = require("mini.statusline")
+statusline.setup({
+	use_icons = false,
+	content = {
+		active = function()
+			local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+			local git = statusline.section_git({ trunc_width = 40 })
+			local filename = statusline.section_filename({ trunc_width = 140 })
+
+			return statusline.combine_groups({
+				{ hl = mode_hl,                 strings = { mode } },
+				{ hl = "MiniStatuslineDevinfo", strings = { git } },
+				"%=",
+				{ hl = "MiniStatuslineFilename", strings = { filename } },
+			})
+		end,
+		inactive = function()
+			local filename = statusline.section_filename({ trunc_width = 140 })
+			return statusline.combine_groups({
+				"%=",
+				{ hl = "MiniStatuslineFilename", strings = { filename } },
+			})
+		end,
+	},
 })
 require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = servers
 })
+require("blink.cmp").setup()
 
-vim.lsp.config('*', {
-	capabilities = require('blink.cmp').get_lsp_capabilities()
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function() pcall(vim.treesitter.start) end
 })
 
 vim.lsp.enable(servers)
 
-local theme_state_file = vim.fs.joinpath(vim.fn.stdpath("state"), "last_theme.txt")
+vim.cmd.colorscheme('vesper')
 
-local function load_last_theme()
-	local file = io.open(theme_state_file, "r")
-	if file then
-		local theme = file:read("*l")
-		file:close()
-		if theme and theme ~= "" and pcall(vim.cmd.colorscheme, theme) then
-			return
-		end
-	end
-
-	vim.cmd.colorscheme("tokyonight-night")
-end
-
-load_last_theme()
-
-require("mini.pairs").setup()
-require("mini.surround").setup()
-require("mini.statusline").setup()
-
-map("n", "<leader>lf", vim.lsp.buf.format)
-map("n", "<leader>tn", ":tabnew<CR>")
-map("n", "<leader>tx", ":tabclose<CR>")
-map("n", "<Tab>", ":tabnext<CR>")
-map("n", "<S-Tab>", ":tabprev<CR>")
-map("n", "<leader>e", ":Oil<CR>")
-map({ "n", "x", "v" }, "<leader>y", '"+y')
-map("n", "<leader>sf", builtin.find_files)
-map("n", "<leader>sg", builtin.live_grep)
-map("n", "<leader>sh", builtin.help_tags)
-map("n", "<leader>sc", builtin.git_commits)
-map("n", "<leader>st", builtin.colorscheme)
-map("n", "<leader>sq", builtin.diagnostics)
-map("n", "<C-c>", ":noh<CR>")
-map("n", "<leader>q", vim.diagnostic.setloclist)
-map("n", "<leader>v", ":e $MYVIMRC<CR>")
-map("n", "<leader>tp", ":TypstPreviewToggle<CR>")
-
-vim.diagnostic.config {
-	update_in_insert = false,
-	severity_sort = true,
-	float = { border = 'rounded', source = 'if_many' },
-	underline = { severity = { min = vim.diagnostic.severity.WARN } },
-
-	virtual_text = true,
-	virtual_lines = false,
-
-	jump = { float = true }
-}
-
-local function apply_custom_theme_overrides()
-	if vim.g.colors_name == 'tokyonight-night' then
-		vim.o.list = true
-		vim.o.cursorline = true
-		vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-	elseif vim.g.colors_name == 'vague' then
-		vim.o.list = false
-		vim.o.cursorline = false
-		vim.o.showtabline = 2
-		vim.api.nvim_set_hl(0, "TabLineFill", { bg = "#2b2a33" })
-		vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#d2d2d2", fg = "#2b2a33" })
-		vim.api.nvim_set_hl(0, "TabLine", { fg = "#d2d2d2", bg = "#2b2a33" })
-		vim.api.nvim_set_hl(0, "StatusLine", { bg = "#6e6a86", fg = "#d0cdda" })
-	else
-		vim.o.list = false
-		vim.o.cursorline = false
-	end
-end
-
-vim.api.nvim_create_autocmd('ColorScheme', {
-	pattern = "*",
-	callback = function()
-		local state_dir = vim.fn.stdpath("state")
-		vim.fn.mkdir(state_dir, "p")
-
-		local file = io.open(theme_state_file, "w")
-		if file then
-			file:write(vim.g.colors_name)
-			file:close()
-		end
-	end
-})
-
-vim.api.nvim_create_autocmd('ColorScheme', {
-	pattern = "*",
-	callback = apply_custom_theme_overrides
-})
-
-apply_custom_theme_overrides()
-
-vim.api.nvim_create_autocmd('InsertCharPre', {
-	callback = function()
-		local char = vim.v.char
-		if char == "(" or char == "," then
-			vim.lsp.buf.signature_help()
-		end
-	end
-})
+vim.keymap.set("n", "<leader>sf", ":Pick files<CR>")
+vim.keymap.set("n", "<leader>sg", ":Pick grep_live<CR>")
+vim.keymap.set("n", "<leader>sh", ":Pick help<CR>")
+vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
